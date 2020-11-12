@@ -7,7 +7,7 @@ import java.util.Collections;
 public class Dealer {
     private final Deck deck;
 
-    public Dealer() {
+    public Dealer(Deck deck) {
         this.deck = new Deck();
     }
 
@@ -16,6 +16,6 @@ public class Dealer {
     }
 
     public Deck getDeck() {
-        return deck;
+        return this.deck;
     }
 }

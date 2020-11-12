@@ -5,7 +5,6 @@ import Client.Players.Player;
 import java.util.ArrayList;
 
 public class ChipsController {
-    //TODO also to server section?
     private ArrayList<Player> players;
     private int smallBlind;
     private int bigBlind;
@@ -50,7 +49,6 @@ public class ChipsController {
     }
 
     public void doCall(int call, Player player) {
-        //TODO trzeba przejrzeć dużo takich przypadków :/
         if (bet > 0 || raise > 0) {
             player.setChips(player.getChips() - call);
             increasePot(call);

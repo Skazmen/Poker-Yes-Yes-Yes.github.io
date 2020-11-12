@@ -19,7 +19,7 @@ public class Player {
     }
 
     public void setChips(int chips) {
-        this.chips = chips;
+        this.chips += chips;
     }
 
     public int getChips() {
@@ -37,9 +37,8 @@ public class Player {
     public String playerToString() {
         return name + " "
                 + chips + " "
-                + hand.toString()
                 + "Has small blind? " + isSmallBlind()
-                + "Has big blind? " + isBigBlind();
+                + " Has big blind? " + isBigBlind();
     }
 
     public void setSmallBlind(boolean isSmallBlind) {
