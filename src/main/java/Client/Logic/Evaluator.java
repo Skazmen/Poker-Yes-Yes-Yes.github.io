@@ -72,11 +72,6 @@ public class Evaluator {
 
                         if (points != STRAIGHT) {
                             points = checkValueEquality(cards);
-                            //FOUR_OF_A_KIND
-                            //FULL_HOUSE
-                            //THREE_OF_A_KIND
-                            //TWO_PAIR
-                            //PAIR
                             setCardPoints(points);
 
                             if (points == 0) {
