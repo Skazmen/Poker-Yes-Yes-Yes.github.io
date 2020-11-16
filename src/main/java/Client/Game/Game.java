@@ -10,9 +10,9 @@ import java.util.Random;
 
 public class Game {
 
-    int hand = 10;
+    int hand;
     int current_player = 0;
-    int i;
+    //int i;
     int round = 0;
     Random rand;
     ArrayList<Player> Players;
@@ -22,20 +22,17 @@ public class Game {
         this.hand = hand;
         this.Players = Players;
         if(Players.size() < 2){
-            System.out.println("COŚ POSZŁO NIE TAK")
+            System.out.println("SOMETHING WENT WRONG");
         }
         java.util.Collections.shuffle(Players);
-        for(Player player : Players){
+        for(Player player : Players) {
             Seat s = new Seat(current_player, player);
             Seats.add(s);
             current_player++;
         }
-        for(i=0; i<Players.size(); i++){
-
-        }
 
     }
-    private Round(){
+    public void Round(){
 
         Deck deck = new Deck();
         for(Player player : Players){
@@ -47,7 +44,7 @@ public class Game {
             card2 = randomCard(deck);
             deck.remove(card2);
             Hand playerHand;
-            playerHand = Hand(card1, card2);
+            playerHand = new Hand(card1, card2);
             player.setHand(playerHand);
 
         }
@@ -55,10 +52,9 @@ public class Game {
         round++;
     }
 
-    public Card randomCard(ArrayList<Card> mydeck) {
+    public Card randomCard(ArrayList<Card> myDeck) {
         rand = new Random();
-        Card randomCard = mydeck.get(rand.nextInt(mydeck.size()));
-        return randomCard;
+        return myDeck.get(rand.nextInt(myDeck.size()));
     }
 
 
