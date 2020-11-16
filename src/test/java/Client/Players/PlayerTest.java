@@ -9,35 +9,36 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
     @BeforeClass
-    void set(){
-        Player gracz = new Player("Jasio", 15);
+    Player setPlayer() {
+        Player player = new Player("Jasio", 15);
+
+        return player;
     }
 
     @Test
     void getName() {
-        Player gracz = new Player("Jasio", 15);
-
-        assertEquals("Jasio", gracz.getName());
+        Player player = setPlayer();
+        assertEquals("Jasio", player.getName());
     }
 
     @Test
     void setChips() {
-        Player gracz = new Player("Jasio", 15);
-        gracz.setChips(-10);
+        Player player = setPlayer();
+        player.setChips(-10);
 
-        assertEquals(5, gracz.getChips());
+        assertEquals(5, player.getChips());
     }
 
     @Test
     void getChips() {
-        Player gracz = new Player("Jasio", 15);
+        Player player = setPlayer();
 
-        assertEquals(15, gracz.getChips());
+        assertEquals(15, player.getChips());
     }
 
     @Test
     void getSetHand() {
-        Player player = new Player("Jasio", 15);
+        Player player = setPlayer();
 
         Card card1 = new Card("HEART", 2);
         Card card2 = new Card("DIAMOND", 3);
@@ -51,7 +52,8 @@ class PlayerTest {
 
     @Test
     void playerToString() {
-        Player player = new Player("Jasio", 15);
+        Player player = setPlayer();
+
         player.setBigBlind(true);
         player.setSmallBlind(false);
 
@@ -60,12 +62,12 @@ class PlayerTest {
 
     @Test
     void blinds() {
-        Player player = new Player("Jasio", 15);
+        Player player = setPlayer();
+
         player.setSmallBlind(true);
         player.setBigBlind(true);
 
         assertEquals(player.isSmallBlind(), true);
         assertEquals(player.isBigBlind(), true);
-
     }
 }
