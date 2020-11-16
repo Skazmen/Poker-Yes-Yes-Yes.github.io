@@ -5,7 +5,6 @@ import Client.Players.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 
-//TODO separate to server section?
 public class PlayerController {
     private ArrayList<Player> players;
 
