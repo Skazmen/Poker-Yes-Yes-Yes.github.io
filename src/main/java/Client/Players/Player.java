@@ -6,6 +6,8 @@ public class Player {
     private final String name;
     private int chips;
     private Hand hand;
+    private int bet = 0;
+    private boolean playing = true;
     private boolean isSmallBlind = false;
     private boolean isBigBlind = false;
 
@@ -24,6 +26,17 @@ public class Player {
 
     public int getChips() {
         return chips;
+    }
+
+    public void betChips(int chips) {
+
+        if(chips <= this.chips){
+            this.chips -= chips;
+            this.bet += bet
+        }
+        else
+            System.out.printf("ZA MAŁY BILANS");
+
     }
 
     public void setHand(Hand hand) {
