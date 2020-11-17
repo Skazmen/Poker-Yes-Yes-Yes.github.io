@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Round {
-    private final ArrayList<Player> players;
+    private ArrayList<Player> players;
     private Queue<Player> playerQueue;
 
     private ChipsController chipsController;
@@ -89,13 +89,17 @@ public class Round {
         players.get(players.size() - 1).setBigBlind(isBigBlind);
     }
 
-    public void doBet(int bet, Player player) {
+    public void bet(int bet, Player player) {
         player.setChips(-bet);
         chipsController.increasePot(bet);
     }
 
-    public void doCall(int call, Player player) {
+    public void call(int call, Player player) {
         player.setChips(-call);
         chipsController.increasePot(call);
+    }
+
+    public void fold(Player player) {
+        players.remove(player);
     }
 }

@@ -24,6 +24,7 @@ public class Turn {
                 break;
             case 4:
                 //fold
+                Round.fold(currentPlayer);
                 break;
             case 5:
                 //check
