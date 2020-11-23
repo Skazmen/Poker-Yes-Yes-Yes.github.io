@@ -25,7 +25,6 @@ public class Evaluator {
     private final CommonCards commonCards;
     private final ArrayList<Player> players;
     private int points = 0;
-    private int playerPoints;
 
     public Evaluator(ArrayList<Player> players, CommonCards commonCards) {
         this.players = players;
@@ -36,31 +35,24 @@ public class Evaluator {
         this.commonCards = commonCards;
     }
 
-    public void doAnalyzeCards() {
+    public int doAnalyzeCards(Player player) {
         ArrayList<Card> cards = new ArrayList<Card>();
-        if (commonCards.size() == 2) {
-            cards.add(commonCards.get(0));
-            cards.add(commonCards.get(1));
-            cards.add(commonCards.get(2));
+        cards.add(player.getHand().getCard1());
+        cards.add(player.getHand().getCard2());
 
+        ArrayList<Card> cardsCommon = new ArrayList<Card>(commonCards);
+
+        int[] queue = new int[30];
+        setQueue(queue);
+
+        for (int i = 0; i < 30; i += 3) {
             int points = 0;
 
-            points = checkValueEquality(cards);
-            setCardPoints(points);
-
-            if (points == 0) {
-                points = checkHighCard(cards);
-                setCardPoints(points);//HIGH_CARD
-            }
-        }
-
-        if (commonCards.size() >= 5) {
-            cards.addAll(commonCards);
-
-            int points = 0;
+            cards.add(cardsCommon.get(queue[i]));
+            cards.add(cardsCommon.get(queue[i + 1]));
+            cards.add(cardsCommon.get(queue[i + 2]));
 
             points = checkRoyalFlush(cards);
-
             if (points != ROYAL_FLUSH) {
                 points = checkStraightFlush(cards);
 
@@ -94,7 +86,15 @@ public class Evaluator {
             } else {
                 setCardPoints(points);//ROYAL_FLUSH
             }
+
+            cards.remove(2);
+            cards.remove(2);
+            cards.remove(2);
+
+            System.out.println(this.points);
         }
+
+        return this.points;
     }
 
     private int checkRoyalFlush(ArrayList<Card> cards) {
@@ -297,11 +297,51 @@ public class Evaluator {
     }
 
     private void setCardPoints(int commonCardPoints) {
-        this.playerPoints = commonCardPoints;
+        if (this.points < commonCardPoints) {
+            this.points = commonCardPoints;
+        }
     }
 
-    public int getCardPoints() {
-        return playerPoints;
+    private void setQueue(int[] queue) {
+        queue[0] = 0;
+        queue[1] = 1;
+        queue[2] = 2;
+
+        queue[3] = 0;
+        queue[4] = 1;
+        queue[5] = 3;
+
+        queue[6] = 0;
+        queue[7] = 1;
+        queue[8] = 4;
+
+        queue[9] = 0;
+        queue[10] = 2;
+        queue[11] = 3;
+
+        queue[12] = 0;
+        queue[13] = 2;
+        queue[14] = 4;
+
+        queue[15] = 0;
+        queue[16] = 3;
+        queue[17] = 4;
+
+        queue[18] = 1;
+        queue[19] = 2;
+        queue[20] = 3;
+
+        queue[21] = 1;
+        queue[22] = 2;
+        queue[23] = 4;
+
+        queue[24] = 1;
+        queue[25] = 3;
+        queue[26] = 4;
+
+        queue[27] = 2;
+        queue[28] = 4;
+        queue[29] = 3;
     }
 }
 

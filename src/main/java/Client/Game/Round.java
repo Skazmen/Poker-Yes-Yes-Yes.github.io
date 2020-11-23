@@ -99,7 +99,7 @@ public class Round {
         chipsController.increasePot(call);
     }
 
-    public static void fold(Player player) {
-        players.remove(player);
+    public void fold(Player player) {
+        this.players.remove(player);
     }
 }

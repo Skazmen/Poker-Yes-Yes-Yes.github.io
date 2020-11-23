@@ -32,7 +32,7 @@ public class Player {
 
         if(chips <= this.chips){
             this.chips -= chips;
-            this.bet += bet
+            this.bet += bet;
         }
         else
             System.out.printf("ZA MAŁY BILANS");
