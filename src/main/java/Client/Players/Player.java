@@ -7,9 +7,11 @@ public class Player {
     private int chips;
     private Hand hand;
     private int bet = 0;
-    private boolean playing = true;
+    private boolean playingGame = true;
+    private boolean playingRound = true;
     private boolean isSmallBlind = false;
     private boolean isBigBlind = false;
+    public int turnsInRound = 0;
 
     public Player(String name, int chips) {
         this.name = name;
@@ -27,6 +29,15 @@ public class Player {
     public int getChips() {
         return chips;
     }
+
+    public int getBet() {
+        return bet;
+    }
+
+    public void setBet(int bet) {
+        this.bet = bet;
+    }
+
 
     public void betChips(int chips) {
 
@@ -69,4 +80,22 @@ public class Player {
     public boolean isBigBlind() {
         return isBigBlind;
     }
+
+    public void setPlayingRound(boolean playingRound) {
+        this.playingRound = playingRound;
+    }
+
+    public boolean playingRound() {
+        return playingRound;
+    }
+
+    public void setPlayingGame(boolean playingGame) {
+        this.playingGame = playingGame;
+    }
+
+    public boolean playingGame() {
+        return playingGame;
+    }
+
+
 }

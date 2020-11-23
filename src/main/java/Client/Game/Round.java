@@ -12,10 +12,10 @@ import java.util.Queue;
 public class Round {
     private ArrayList<Player> players;
     private Queue<Player> playerQueue;
-
+    private ArrayList<Player> playersAbleToBet;
     private ChipsController chipsController;
     private CardDealing cardDealing;
-
+    private int iterator = 0;
     private static int roundCount;
 
     public Round(
@@ -61,6 +61,18 @@ public class Round {
         for (Player player : players) {
             System.out.println(player.toString());
         }
+        while (!ifRoundShouldBeStopped()){
+            Player currentPlayer = playerQueue.get(iterator)
+            iterator++;
+            Turn.turn(currentPlayer);
+            // W KAŻDEJ 10-SEKUNDOWEJ TURZE KTOŚ MOŻE COŚ ZMIENIĆ
+
+        }
+
+
+
+
+
 
         while (playerQueue.peek() != null) {
             Player currentPlayer = playerQueue.poll();
@@ -89,6 +101,37 @@ public class Round {
         players.get(players.size() - 1).setBigBlind(isBigBlind);
     }
 
+    private boolean ifRoundShouldBeStopped() {
+
+        int firstBet;
+        boolean sameBets = true;
+        boolean stop = false;
+        for (Player player : players) {
+            if (player.playingGame() && player.playingRound())
+                if (player.getChips() != 0)
+                    playersAbleToBet.add(player);
+
+        }
+        if (playersAbleToBet.size() <= 1) {
+            stop = true;
+        }
+        else if (playersAbleToBet.size() >= 2) {
+            firstBet = playersAbleToBet.get(0).getBet();
+            for (Player player : players) {
+                if(player.getBet() != firstBet)
+                    sameBets = false;
+                    break;
+            }
+            for (Player player : players) {
+                if(player.isBigBlind())
+                    if(player.turnsInRound > 0)
+                        if(sameBets)
+                            stop = true;
+            }
+        }
+        return stop;
+    }
+
     public void bet(int bet, Player player) {
         player.setChips(-bet);
         chipsController.increasePot(bet);
@@ -99,7 +142,7 @@ public class Round {
         chipsController.increasePot(call);
     }
 
-    public void fold(Player player) {
-        this.players.remove(player);
+    public static void fold(Player player) {
+        player.setPlayingRound(false);
     }
 }
