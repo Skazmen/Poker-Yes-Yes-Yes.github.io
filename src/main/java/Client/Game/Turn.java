@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 
 public class Turn {
     public static void turn(Player currentPlayer) throws IOException {
+        currentPlayer.turnsInRound++;
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); //chwilowe uzycie docelowo server
         int input = 0;
         input = Integer.parseInt(in.readLine());
@@ -32,6 +33,5 @@ public class Turn {
             default:
                 break;
         }
-
     }
 }
