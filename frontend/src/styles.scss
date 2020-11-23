@@ -1,0 +1,8 @@
+@import 'themes.scss';
+
+@import '~@nebular/theme/styles/_globals.scss';
+
+@include nb-install() {
+@include nb-theme-global();
+};
+/* You can add global styles to this file, and also import other style files */
