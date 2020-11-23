@@ -37,20 +37,22 @@ public class Evaluator {
 
     public int doAnalyzeCards(Player player) {
         ArrayList<Card> cards = new ArrayList<Card>();
-        cards.add(player.getHand().getCard1());
-        cards.add(player.getHand().getCard2());
 
         ArrayList<Card> cardsCommon = new ArrayList<Card>(commonCards);
+        cardsCommon.add(player.getHand().getCard1());
+        cardsCommon.add(player.getHand().getCard2());
 
-        int[] queue = new int[30];
+        int[] queue = new int[105];
         setQueue(queue);
 
-        for (int i = 0; i < 30; i += 3) {
+        for (int i = 0; i < 105; i += 5) {
             int points = 0;
 
             cards.add(cardsCommon.get(queue[i]));
             cards.add(cardsCommon.get(queue[i + 1]));
             cards.add(cardsCommon.get(queue[i + 2]));
+            cards.add(cardsCommon.get(queue[i + 3]));
+            cards.add(cardsCommon.get(queue[i + 4]));
 
             points = checkRoyalFlush(cards);
             if (points != ROYAL_FLUSH) {
@@ -87,11 +89,11 @@ public class Evaluator {
                 setCardPoints(points);//ROYAL_FLUSH
             }
 
-            cards.remove(2);
-            cards.remove(2);
-            cards.remove(2);
-
-            System.out.println(this.points);
+            cards.remove(cardsCommon.get(queue[i]));
+            cards.remove(cardsCommon.get(queue[i + 1]));
+            cards.remove(cardsCommon.get(queue[i + 2]));
+            cards.remove(cardsCommon.get(queue[i + 3]));
+            cards.remove(cardsCommon.get(queue[i + 4]));
         }
 
         return this.points;
@@ -306,42 +308,128 @@ public class Evaluator {
         queue[0] = 0;
         queue[1] = 1;
         queue[2] = 2;
+        queue[3] = 3;
+        queue[4] = 4;
 
-        queue[3] = 0;
-        queue[4] = 1;
-        queue[5] = 3;
+        queue[5] = 0;
+        queue[6] = 1;
+        queue[7] = 2;
+        queue[8] = 3;
+        queue[9] = 5;
 
-        queue[6] = 0;
-        queue[7] = 1;
-        queue[8] = 4;
-
-        queue[9] = 0;
-        queue[10] = 2;
-        queue[11] = 3;
-
-        queue[12] = 0;
-        queue[13] = 2;
-        queue[14] = 4;
+        queue[10] = 0;
+        queue[11] = 1;
+        queue[12] = 2;
+        queue[13] = 4;
+        queue[14] = 5;
 
         queue[15] = 0;
-        queue[16] = 3;
-        queue[17] = 4;
+        queue[16] = 1;
+        queue[17] = 2;
+        queue[18] = 4;
+        queue[19] = 6;
 
-        queue[18] = 1;
-        queue[19] = 2;
-        queue[20] = 3;
-
+        queue[20] = 0;
         queue[21] = 1;
         queue[22] = 2;
-        queue[23] = 4;
+        queue[23] = 5;
+        queue[24] = 6;
 
-        queue[24] = 1;
-        queue[25] = 3;
-        queue[26] = 4;
-
-        queue[27] = 2;
+        queue[25] = 0;
+        queue[26] = 1;
+        queue[27] = 3;
         queue[28] = 4;
-        queue[29] = 3;
+        queue[29] = 5;
+
+        queue[30] = 0;
+        queue[31] = 1;
+        queue[32] = 3;
+        queue[33] = 4;
+        queue[34] = 6;
+
+        queue[35] = 0;
+        queue[36] = 1;
+        queue[37] = 3;
+        queue[38] = 5;
+        queue[39] = 6;
+
+        queue[40] = 0;
+        queue[41] = 1;
+        queue[42] = 4;
+        queue[43] = 5;
+        queue[44] = 6;
+
+
+        queue[45] = 0;
+        queue[46] = 2;
+        queue[47] = 3;
+        queue[48] = 4;
+        queue[49] = 5;
+
+        queue[50] = 0;
+        queue[51] = 2;
+        queue[52] = 3;
+        queue[53] = 4;
+        queue[54] = 6;
+
+        queue[55] = 0;
+        queue[56] = 2;
+        queue[57] = 3;
+        queue[58] = 5;
+        queue[59] = 6;
+
+        queue[60] = 0;
+        queue[61] = 2;
+        queue[62] = 4;
+        queue[63] = 5;
+        queue[64] = 6;
+
+        queue[65] = 0;
+        queue[66] = 3;
+        queue[67] = 4;
+        queue[68] = 5;
+        queue[69] = 6;
+
+        queue[70] = 1;
+        queue[71] = 2;
+        queue[72] = 3;
+        queue[73] = 4;
+        queue[74] = 5;
+
+        queue[75] = 1;
+        queue[76] = 2;
+        queue[77] = 3;
+        queue[78] = 4;
+        queue[79] = 6;
+
+        queue[80] = 1;
+        queue[81] = 2;
+        queue[82] = 3;
+        queue[83] = 5;
+        queue[84] = 6;
+
+        queue[85] = 1;
+        queue[86] = 2;
+        queue[87] = 4;
+        queue[88] = 5;
+        queue[89] = 6;
+
+        queue[90] = 1;
+        queue[91] = 3;
+        queue[92] = 4;
+        queue[93] = 5;
+        queue[94] = 6;
+
+        queue[95] = 2;
+        queue[96] = 3;
+        queue[97] = 4;
+        queue[98] = 5;
+        queue[99] = 6;
+
+        queue[100] = 0;
+        queue[101] = 1;
+        queue[102] = 2;
+        queue[103] = 3;
+        queue[104] = 6;
     }
 }
-

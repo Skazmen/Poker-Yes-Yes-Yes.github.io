@@ -60,12 +60,12 @@ public class EvaluatorTest {
         commonCards.add(new Card(SuitEnum.HEART.getSuit(), 12));
         commonCards.add(new Card(SuitEnum.HEART.getSuit(), 8));
         commonCards.add(new Card(SuitEnum.HEART.getSuit(), 7));
-        commonCards.add(new Card(SuitEnum.HEART.getSuit(), 6));
+        commonCards.add(new Card(SuitEnum.HEART.getSuit(), 11));
 
         evaluator = new Evaluator(players, commonCards);
 
         Card card1 = new Card("HEART", 10);
-        Card card2 = new Card("DIAMOND", 9);
+        Card card2 = new Card("HEART", 9);
 
         Hand hand = new Hand(card1, card2);
         players.get(0).setHand(hand);
@@ -198,14 +198,14 @@ public class EvaluatorTest {
         commonCards.clear();
         commonCards.add(new Card(SuitEnum.HEART.getSuit(), 13));
         commonCards.add(new Card(SuitEnum.DIAMOND.getSuit(), 11));
-        commonCards.add(new Card(SuitEnum.HEART.getSuit(), 12));
+        commonCards.add(new Card(SuitEnum.DIAMOND.getSuit(), 12));
         commonCards.add(new Card(SuitEnum.HEART.getSuit(), 3));
         commonCards.add(new Card(SuitEnum.HEART.getSuit(), 4));
 
         evaluator = new Evaluator(players, commonCards);
 
         Card card1 = new Card("HEART", 13);
-        Card card2 = new Card("DIAMOND", 2);
+        Card card2 = new Card("DIAMOND", 6);
 
         Hand hand = new Hand(card1, card2);
         players.get(0).setHand(hand);
