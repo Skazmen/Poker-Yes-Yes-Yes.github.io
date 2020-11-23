@@ -32,6 +32,6 @@ public class Turn {
             default:
                 break;
         }
-
+        currentPlayer.turnsInRound++;
     }
 }

@@ -4,12 +4,14 @@ import Client.Deck.Hand;
 
 public class Player {
     private final String name;
-    private int chips;
+    public int chips;
     private Hand hand;
-    private int bet = 0;
-    private boolean playing = true;
-    private boolean isSmallBlind = false;
-    private boolean isBigBlind = false;
+    public int bet = 0;
+    public boolean playingGame = true;
+    public boolean playingRound = true;
+    public boolean isSmallBlind = false;
+    public boolean isBigBlind = false;
+    public int turnsInRound = 0;
 
     public Player(String name, int chips) {
         this.name = name;
@@ -32,7 +34,7 @@ public class Player {
 
         if(chips <= this.chips){
             this.chips -= chips;
-            this.bet += bet
+            this.bet += bet;
         }
         else
             System.out.printf("ZA MAŁY BILANS");
