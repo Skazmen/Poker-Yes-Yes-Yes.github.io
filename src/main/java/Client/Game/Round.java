@@ -62,10 +62,10 @@ public class Round {
             System.out.println(player.toString());
         }
         while (!ifRoundShouldBeStopped()){
-            Player currentPlayer = playerQueue.element(iterator)
+            Player currentPlayer = playerQueue.get(iterator)
             iterator++;
-            Turn turn = new Turn(currentPlayer);
-
+            Turn.turn(currentPlayer);
+            // W KAŻDEJ 10-SEKUNDOWEJ TURZE KTOŚ MOŻE COŚ ZMIENIĆ
 
         }
 
@@ -107,8 +107,8 @@ public class Round {
         boolean sameBets = true;
         boolean stop = false;
         for (Player player : players) {
-            if (player.playingGame && player.playingRound)
-                if (player.chips != 0)
+            if (player.playingGame() && player.playingRound())
+                if (player.getChips() != 0)
                     playersAbleToBet.add(player);
 
         }
@@ -116,9 +116,9 @@ public class Round {
             stop = true;
         }
         else if (playersAbleToBet.size() >= 2) {
-            firstBet = playersAbleToBet.get(0).bet;
+            firstBet = playersAbleToBet.get(0).getBet();
             for (Player player : players) {
-                if(player.bet != firstBet)
+                if(player.getBet() != firstBet)
                     sameBets = false;
                     break;
             }
@@ -143,6 +143,6 @@ public class Round {
     }
 
     public static void fold(Player player) {
-        players.remove(player);
+        player.setPlayingRound(false);
     }
 }

@@ -7,6 +7,8 @@ import Client.Deck.Deck;
 import Client.Deck.Hand;
 import Client.Players.Player;
 import Client.Table.Seat;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,7 +22,7 @@ public class Game {
     ArrayList<Player> Players;
     ArrayList<Seat> Seats;
 
-    public Game(ArrayList<Player> Players, int hand, int smallBlind, int bigBlind) {
+    public Game(ArrayList<Player> Players, int hand, int smallBlind, int bigBlind) throws IOException {
         this.hand = hand;
         this.Players = Players;
         this.smallBlind = smallBlind;
@@ -39,8 +41,17 @@ public class Game {
         CardDealing cardDealing = new CardDealing(Players, deck);
 
         Round round1 = new Round(Players, chipsController, cardDealing);
-
-
+        round1.doRound();
+        cardDealing.dealFlop();
+        Round round2 = new Round(Players, chipsController, cardDealing);
+        round2.doRound();
+        cardDealing.dealRiver();
+        Round round3 = new Round(Players, chipsController, cardDealing);
+        round3.doRound();
+        cardDealing.dealTurn();
+        Round round4 = new Round(Players, chipsController, cardDealing);
+        round4.doRound();
+        // KTOWYGRAŁ()
 
     }
 
