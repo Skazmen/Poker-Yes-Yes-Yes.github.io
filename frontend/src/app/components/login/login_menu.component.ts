@@ -3,12 +3,12 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup_menu.component.html',
-  styleUrls: ['./signup_menu.component.scss']
+  templateUrl: './login_menu.component.html',
+  styleUrls: ['./login_menu.component.scss']
 
 })
 
-export class SignupMenuComponent implements OnInit{
+export class LoginMenuComponent implements OnInit{
   title = 'app';
 
   constructor(private router: Router) {}

@@ -18,7 +18,7 @@ export class MainMenuComponent implements OnInit {
     this.buttonName = 'BOOM';
   }
 
-  goToMainMenu(): void {
-    this.router.navigate([`signup`]);
+  goHome(): void {
+    this.router.navigate([``]);
   }
 }

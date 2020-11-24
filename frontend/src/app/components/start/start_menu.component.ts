@@ -20,4 +20,8 @@ export class StartMenuComponent implements OnInit {
   goToSignUp() {
       this.router.navigate([`signup`]);
   }
+
+  goToLogin() {
+    this.router.navigate([`login`]);
+  }
 }

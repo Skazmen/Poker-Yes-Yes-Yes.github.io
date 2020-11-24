@@ -9,12 +9,16 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {StartMenuComponent} from './components/start/start_menu.component';
 import {SignupMenuComponent} from './components/signup/signup_menu.component';
+import {MainMenuComponent} from './components/main_menu/main_menu.component';
+import {LoginMenuComponent} from './components/login/login_menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartMenuComponent,
-    SignupMenuComponent
+    SignupMenuComponent,
+    MainMenuComponent,
+    LoginMenuComponent
   ],
   imports: [
     BrowserModule,
