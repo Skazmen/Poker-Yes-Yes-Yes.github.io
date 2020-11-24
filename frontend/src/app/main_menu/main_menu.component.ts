@@ -3,20 +3,22 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup_menu.component.html',
-  styleUrls: ['./signup_menu.component.scss']
+  templateUrl: './main_menu.component.html',
+  styleUrls: ['./main_menu.component.scss']
 
 })
 
-export class SignupMenuComponent implements OnInit{
+export class MainMenuComponent implements OnInit {
   title = 'app';
+  buttonName = '';
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+    this.buttonName = 'BOOM';
   }
 
   goToMainMenu(): void {
-    this.router.navigate([`mainMenu`]);
+    this.router.navigate([`signup`]);
   }
 }

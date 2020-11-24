@@ -22,7 +22,7 @@ export class StartMenuComponent implements OnInit {
   goToSignUp() {
     if (this.buttonName === 'BOOM') {
       this.buttonName = 'BANG';
-      this.router.navigateByUrl(`signup`);
+      this.router.navigate([`signup`]);
     } else {
       this.buttonName = 'BOOM';
     }
