@@ -7,8 +7,8 @@ import {NbButtonModule, NbLayoutModule, NbThemeModule} from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
-import {StartMenuComponent} from './start/start_menu.component';
-import {SignupMenuComponent} from './signup/signup_menu.component';
+import {StartMenuComponent} from './components/start/start_menu.component';
+import {SignupMenuComponent} from './components/signup/signup_menu.component';
 
 @NgModule({
   declarations: [
