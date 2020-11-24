@@ -11,11 +11,10 @@ import java.util.Queue;
 
 public class Round {
     private ArrayList<Player> players;
-    private Queue<Player> playerQueue;
+    private LinkedList<Player> playerQueue;
     private ArrayList<Player> playersAbleToBet;
     private ChipsController chipsController;
     private CardDealing cardDealing;
-    private int iterator = 0;
     private static int roundCount;
 
     public Round(
@@ -62,34 +61,13 @@ public class Round {
             System.out.println(player.toString());
         }
         while (!ifRoundShouldBeStopped()){
-            Player currentPlayer = playerQueue.get(iterator)
-            iterator++;
+            Player currentPlayer = playerQueue.getFirst();
+            playerQueue.removeFirst();
+            playerQueue.addLast(currentPlayer);
             Turn.turn(currentPlayer);
             // W KAŻDEJ 10-SEKUNDOWEJ TURZE KTOŚ MOŻE COŚ ZMIENIĆ
 
         }
-
-
-
-
-
-
-        while (playerQueue.peek() != null) {
-            Player currentPlayer = playerQueue.poll();
-
-            Turn.turn(currentPlayer);
-        }
-
-        if (roundCount == 1) {
-            cardDealing.dealFlop();
-        } else if (roundCount == 2) {
-            cardDealing.dealRiver();
-        } else if (roundCount == 3) {
-            cardDealing.dealTurn();
-        } else if (roundCount > 3) {
-            resetRoundCount();
-        }
-
         resetQueue();
     }
 
