@@ -10,21 +10,14 @@ import {Router} from '@angular/router';
 
 export class StartMenuComponent implements OnInit {
   title = 'app';
-  buttonName = '';
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.buttonName = 'BOOM';
   }
 
   // tslint:disable-next-line:typedef
   goToSignUp() {
-    if (this.buttonName === 'BOOM') {
-      this.buttonName = 'BANG';
       this.router.navigate([`signup`]);
-    } else {
-      this.buttonName = 'BOOM';
-    }
   }
 }
