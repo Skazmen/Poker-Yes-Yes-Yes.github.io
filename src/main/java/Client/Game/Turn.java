@@ -5,9 +5,10 @@ import Client.Players.Player;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import Client.Controllers.ChipsController;
 
 public class Turn {
-    public static void turn(Player currentPlayer) throws IOException {
+    public static void turn(Player currentPlayer, ChipsController chipsController) throws IOException {
         currentPlayer.turnsInRound++;
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in)); //chwilowe uzycie docelowo server
         int input = 0;
@@ -33,5 +34,11 @@ public class Turn {
             default:
                 break;
         }
+
+        // value:300 type:bet --> chipsController.doBet(300,currentPlayer);
+
+
+
+
     }
 }
