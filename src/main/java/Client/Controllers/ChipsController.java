@@ -57,7 +57,7 @@ public class ChipsController {
 
     public void doBet(int bet, Player player) {
         player.setChips(player.getChips() - bet);
-        setBet(bet);
+        player.setBet(bet);
         increaseRaise(bet);
         setCall(bet);
         increasePot(bet);

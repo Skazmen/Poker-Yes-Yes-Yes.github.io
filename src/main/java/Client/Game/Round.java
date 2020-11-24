@@ -64,11 +64,15 @@ public class Round {
             Player currentPlayer = playerQueue.getFirst();
             playerQueue.removeFirst();
             playerQueue.addLast(currentPlayer);
-            Turn.turn(currentPlayer);
+            Turn.turn(currentPlayer, chipsController);
             // W KAŻDEJ 10-SEKUNDOWEJ TURZE KTOŚ MOŻE COŚ ZMIENIĆ
 
         }
         resetQueue();
+        for (Player player : players) {
+            player.turnsInRound = 0;
+        }
+
     }
 
     private void setSmallBlind(boolean isSmallBlind) {

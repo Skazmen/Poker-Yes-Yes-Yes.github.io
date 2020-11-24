@@ -53,15 +53,20 @@ public class Game {
             ChipsController chipsController = new ChipsController(Players, smallBlind, bigBlind );
             CardDealing cardDealing = new CardDealing(Players, deck);
 
+            cardDealing.dealPlayerHand();
+            // WYSLIJ INFO O KARTACH KAZDEGO GRACZA
             Round round1 = new Round(Players, chipsController, cardDealing);
             round1.doRound();
             cardDealing.dealFlop();
+            // WYSLIJ INFO O FLOPIE
             Round round2 = new Round(Players, chipsController, cardDealing);
             round2.doRound();
             cardDealing.dealRiver();
+            // WYSLIJ INFO O RIVERZE
             Round round3 = new Round(Players, chipsController, cardDealing);
             round3.doRound();
             cardDealing.dealTurn();
+            // WYSLIJ INFO O TURNIE
             Round round4 = new Round(Players, chipsController, cardDealing);
             round4.doRound();
 
@@ -73,7 +78,7 @@ public class Game {
             win = Scores.indexOf(Collections.max(Scores));
             Players.get(win).setChips(chipsController.getPot());
             chipsController.finishRound();
-            // WYGRYWA TEN()
+            // WYSLIJ INFO KTO WYGRAL
 
         }
     }
