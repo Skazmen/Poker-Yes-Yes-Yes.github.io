@@ -8,17 +8,19 @@ import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {StartMenuComponent} from './components/start/start_menu.component';
-import {SignupMenuComponent} from './components/signup/signup_menu.component';
+import {SignupComponent} from './components/signup/signup.component';
 import {MainMenuComponent} from './components/main_menu/main_menu.component';
-import {LoginMenuComponent} from './components/login/login_menu.component';
+import {LoginComponent} from './components/login/login.component';
+import {RankingComponent} from './components/ranking/ranking.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartMenuComponent,
-    SignupMenuComponent,
     MainMenuComponent,
-    LoginMenuComponent
+    SignupComponent,
+    LoginComponent,
+    RankingComponent
   ],
   imports: [
     BrowserModule,

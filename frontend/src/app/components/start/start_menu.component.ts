@@ -17,11 +17,11 @@ export class StartMenuComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  goToSignUp() {
+  goToSignUp(): void {
       this.router.navigate([`signup`]);
   }
 
-  goToLogin() {
+  goToLogin(): void {
     this.router.navigate([`login`]);
   }
 }

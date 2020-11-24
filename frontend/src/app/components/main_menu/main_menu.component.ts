@@ -10,15 +10,17 @@ import {Router} from '@angular/router';
 
 export class MainMenuComponent implements OnInit {
   title = 'app';
-  buttonName = '';
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.buttonName = 'BOOM';
   }
 
   goHome(): void {
     this.router.navigate([``]);
+  }
+
+  goRanks(): void {
+    this.router.navigate([`ranks`]);
   }
 }
