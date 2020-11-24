@@ -19,15 +19,22 @@ public class CardDealing {
         this.index = 0;
     }
 
-    public void dealPlayerHand() {
+    public StringBuilder dealPlayerHand() {
+        StringBuilder str = new StringBuilder("");
+
         if(index < 52) {
             for(Player player : players) {
                 player.setHand(new Hand(deck.get(index), deck.get(index+1)));
                 index += 2;
+
+                System.out.println(player.getName() + ":" + player.getHand().getCard1() + "," + deck.get(index+1) + ";");
+                str.append(player.getName() + ":" + deck.get(index) + "," + deck.get(index+1) + ";");
             }
         }
 
         commonCards = new CommonCards(deck, index);
+
+        return str ;
     }
 
     public void dealFlop() {

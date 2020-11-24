@@ -11,7 +11,10 @@ import Client.Table.CommonCards;
 import Client.Table.Seat;
 import Client.Players.Player;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,19 +22,23 @@ import java.util.Random;
 
 public class Game {
 
-    int hand, smallBlind, bigBlind;
+    int chips, smallBlind, bigBlind;
     int current_player = 0;
     boolean game_end = false;
     int i;
     int round = 0;
     int win;
     Random rand;
-    ArrayList<Player> Players;
-    ArrayList<Seat> Seats;
+    ArrayList<Player> Players = new ArrayList<>();
+    ArrayList<Seat> Seats = new ArrayList<>();
 
-    public Game(ArrayList<Player> Players, int hand, int smallBlind, int bigBlind) throws IOException {
-        this.hand = hand;
-        this.Players = Players;
+    public Game(int players_count, int chips, int smallBlind, int bigBlind) throws IOException {
+        this.chips = chips;
+
+        for (int i = 0; i < players_count; i++) {
+            this.Players.add(new Player(Integer.toString(i), chips));
+        }
+
         this.smallBlind = smallBlind;
         this.bigBlind = bigBlind;
         if(Players.size() < 2){
@@ -52,9 +59,21 @@ public class Game {
             Evaluator evaluator = new Evaluator(Players, commonCards);
             ChipsController chipsController = new ChipsController(Players, smallBlind, bigBlind );
             CardDealing cardDealing = new CardDealing(Players, deck);
+            StringBuilder message;
 
-            cardDealing.dealPlayerHand();
+
+
+            message = cardDealing.dealPlayerHand();
             // WYSLIJ INFO O KARTACH KAZDEGO GRACZA
+            Socket s = new Socket("localhost", 6969);
+
+            PrintStream out
+                    = new PrintStream(s.getOutputStream());
+
+            out.println(message);
+
+
+
             Round round1 = new Round(Players, chipsController, cardDealing);
             round1.doRound();
             cardDealing.dealFlop();
