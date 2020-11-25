@@ -28,8 +28,6 @@ public class Round {
         this.players = players;
         this.chipsController = chipsController;
         this.cardDealing = cardDealing;
-
-        //resetRoundCount();
         this.setQueue();
     }
 
@@ -60,26 +58,24 @@ public class Round {
         if(roundCount == 1)
             chipsController.startRound(roundCount);
 
-
-
         PrintStream out = new PrintStream(socket.getOutputStream());
 
-        boolean stop_doround = ifRoundShouldBeStopped();
+        boolean stopDoRound = ifRoundShouldBeStopped();
 
-        while (!stop_doround){
+        while (!stopDoRound){
             Player currentPlayer = playerQueue.getFirst();
-            playerQueue.removeFirst();
-            playerQueue.addLast(currentPlayer);
             Turn.turn(currentPlayer, chipsController, socket);
 
-            stop_doround = ifRoundShouldBeStopped();
+            stopDoRound = ifRoundShouldBeStopped();
 
-            if (!stop_doround){
+            if (!stopDoRound){
                 out.println("done");
             }
 
-
+            playerQueue.removeFirst();
+            playerQueue.addLast(currentPlayer);
         }
+
         roundCount++;
         resetQueue();
 
@@ -99,12 +95,14 @@ public class Round {
     }
 
     private boolean ifRoundShouldBeStopped() {
-
         ArrayList<Player> playersAbleToBet = new ArrayList<>();
         int firstBet;
         boolean sameBets = true;
         boolean stop = false;
         boolean bigBlindTurn = false;
+
+        System.out.println("Pot: " + chipsController.getPot());
+
         for (Player player : players) {
             if (player.playingGame() && player.playingRound())
                 if (player.getChips() > 0)
@@ -128,7 +126,7 @@ public class Round {
             System.out.println("===========");
             for (Player player : players) {
                 if(player.playingRound() && player.playingGame())
-                System.out.println(player.getBet());
+                System.out.println("Player's " + player.getName() + " bet: " + player.getBet());
             }
             System.out.println("===========");
             for (Player player : players) {

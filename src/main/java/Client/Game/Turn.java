@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import Client.Controllers.ChipsController;
 
+
 public class Turn {
     public static void turn(Player currentPlayer, ChipsController chipsController, Socket socket) throws IOException {
         currentPlayer.turnsInRound++;
@@ -18,7 +19,7 @@ public class Turn {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        System.out.println("Player: " + currentPlayer.getName());
+        System.out.println("Now Player's " + currentPlayer.getName() + " turn");
         input = in.readLine();
 
         String[] parts = input.split(" ");
@@ -46,12 +47,6 @@ public class Turn {
             default:
                 break;
         }
-
-
         // value:300 type:bet --> chipsController.doBet(300,currentPlayer);
-
-
-
-
     }
 }

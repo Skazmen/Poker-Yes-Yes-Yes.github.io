@@ -2,21 +2,17 @@ package Client.Game;
 
 import Client.Controllers.CardDealing;
 import Client.Controllers.ChipsController;
-import Client.Deck.Card;
 import Client.Deck.Deck;
-import Client.Deck.Hand;
 import Client.Logic.Evaluator;
 import Client.Players.Player;
 import Client.Table.CommonCards;
 import Client.Table.Seat;
-import Client.Players.Player;
 
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Random;
 
 import static Client.Game.Round.resetRoundCount;
 
@@ -29,120 +25,102 @@ public class Game {
 
     boolean game_end = false;
 
-    Random rand;
-
-    ArrayList<Player> Players = new ArrayList<>();
+    ArrayList<Player> playerList = new ArrayList<>();
     ArrayList<Seat> Seats = new ArrayList<>();
 
     public Game(int players_count, int chips, int smallBlind, int bigBlind) throws IOException {
         this.chips = chips;
 
         for (int i = 0; i < players_count; i++) {
-            this.Players.add(new Player(Integer.toString(i), chips));
+            this.playerList.add(new Player(Integer.toString(i), chips));
         }
 
         this.smallBlind = smallBlind;
         this.bigBlind = bigBlind;
 
-        if(Players.size() < 2){
+        if(playerList.size() < 2){
             System.out.println("We lost our players to play with");
         }
-        java.util.Collections.shuffle(Players);
-        for(Player player : Players) {
+        java.util.Collections.shuffle(playerList);
+        for(Player player : playerList) {
             Seat s = new Seat(current_player, player);
             Seats.add(s);
             current_player++;
         }
 
-        Socket s = new Socket("localhost", 6967);
-        PrintStream out = new PrintStream(s.getOutputStream());
-        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+        Socket server = new Socket("localhost", 6967);
+        PrintStream out = new PrintStream(server.getOutputStream());
 
         while(!game_end) {
             ArrayList<Integer> Scores = new ArrayList<>(Arrays.asList(new Integer[8]));
             Collections.fill(Scores,0);
             Deck deck = new Deck();
+
             CommonCards commonCards = new CommonCards(deck, 0);
-            Evaluator evaluator = new Evaluator(Players, commonCards);
-            ChipsController chipsController = new ChipsController(Players, smallBlind, bigBlind );
-            CardDealing cardDealing = new CardDealing(Players, deck);
+            Evaluator evaluator = new Evaluator(playerList, commonCards);
+            ChipsController chipsController = new ChipsController(playerList, smallBlind, bigBlind );
+            CardDealing cardDealing = new CardDealing(playerList, deck);
+
             StringBuilder message;
             chipsController.setPot(0);
-            boolean stop = false;
-
 
             message = cardDealing.dealPlayerHand();
-            // WYSLIJ INFO O KARTACH KAZDEGO GRACZA
             out.println(message);
             System.out.println(message);
 
-            System.out.println("ZACZYNA SIE RUNDA 1");
-            Round round1 = new Round(Players, chipsController, cardDealing);
-            round1.doRound(s);
-
+            System.out.println("1. ROUND BEGINS");
+            Round round1 = new Round(playerList, chipsController, cardDealing);
+            round1.doRound(server);
 
             if(!round1.get_stop()){
                 message = cardDealing.dealFlop();
-                // WYSLIJ INFO O FLOPIE
                 out.println(message);
                 System.out.println(message);
 
-                System.out.println("ZACZYNA SIE RUNDA 2");
-                Round round2 = new Round(Players, chipsController, cardDealing);
-                round2.doRound(s);
+                System.out.println("2. ROUND BEGINS");
+                Round round2 = new Round(playerList, chipsController, cardDealing);
+                round2.doRound(server);
 
                 if(!round2.get_stop()){
-
                     message = cardDealing.dealRiver();
-                    // WYSLIJ INFO O RIVERZE
                     out.println(message);
                     System.out.println(message);
 
-
-                    System.out.println("ZACZYNA SIE RUNDA 3");
-                    Round round3 = new Round(Players, chipsController, cardDealing);
-                    round3.doRound(s);
+                    System.out.println("3. ROUND BEGINS");
+                    Round round3 = new Round(playerList, chipsController, cardDealing);
+                    round3.doRound(server);
 
                     if(!round3.get_stop()){
                         message = cardDealing.dealTurn();
-                        // WYSLIJ INFO O TURNIE
                         out.println(message);
                         System.out.println(message);
 
                         System.out.println("ZACZYNA SIE RUNDA 4");
-                        Round round4 = new Round(Players, chipsController, cardDealing);
-                        round4.doRound(s);
+                        Round round4 = new Round(playerList, chipsController, cardDealing);
+                        round4.doRound(server);
                     }
-
                 }
-
             }
 
 
-            for(i=0;i<Players.size();i++){
-                if(Players.get(i).playingGame() && Players.get(i).playingRound())
-                    Scores.set(i, evaluator.doAnalyzeCards(Players.get(i)));
-
+            for(i=0; i< playerList.size(); i++){
+                if(playerList.get(i).playingGame() && playerList.get(i).playingRound())
+                    Scores.set(i, evaluator.doAnalyzeCards(playerList.get(i)));
             }
 
             win = Scores.indexOf(Collections.max(Scores));
-            Players.get(win).setChips(chipsController.getPot());
+            playerList.get(win).setChips(chipsController.getPot());
 
             System.out.println("WYGRAL GRACZ");
-            System.out.println(Players.get(win).getName());
+            System.out.println(playerList.get(win).getName());
             System.out.println("ILE WYGRAL?");
             System.out.println(chipsController.getPot());
-            // WYSLIJ INFO KTO WYGRAL
 
-            for(Player player : Players){
+            for(Player player : playerList){
                 if(player.playingGame())
                     player.setPlayingRound(true);
             }
             resetRoundCount();
-            //Player tempPlayer = Players.get(0);
-            //Players.remove(0);
-            //Players.add(tempPlayer);
-
             chipsController.finishRound();
         }
     }

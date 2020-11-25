@@ -47,7 +47,6 @@ public class Player {
         }
         else
             System.out.printf("ZA MAŁY BILANS");
-
     }
 
     public void setHand(Hand hand) {
@@ -96,6 +95,4 @@ public class Player {
     public boolean playingGame() {
         return playingGame;
     }
-
-
 }

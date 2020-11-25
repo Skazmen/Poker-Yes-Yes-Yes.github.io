@@ -25,21 +25,17 @@ public class ChipsController {
                 if (player.isBigBlind()) {
                     player.setChips(player.getChips() - bigBlind);
                     doBet(bigBlind, player);
-                    //increasePot(bigBlind);
                 } else if (player.isSmallBlind()) {
                     player.setChips(player.getChips() - smallBlind);
                     doBet(smallBlind, player);
-                    //increasePot(smallBlind);
                 }
             }
 
             setCall(bigBlind);
-            //increasePot(bigBlind + smallBlind);
         }
     }
 
     public void finishRound() {
-        //setPot(0);
         for(Player player : players){
             player.setBet(0);
         }
@@ -62,7 +58,6 @@ public class ChipsController {
         player.setChips(-(max - player.getBet()));
         increasePot(max - player.getBet());
         player.setBet(max);
-
     }
 
     public void doBet(int bet, Player player) {
