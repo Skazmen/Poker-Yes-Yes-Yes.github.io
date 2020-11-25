@@ -68,7 +68,7 @@ public class Game {
             // WYSLIJ INFO O KARTACH KAZDEGO GRACZA
             out.println(message);
 
-
+            System.out.println("ZACZYNA SIE RUNDA 1");
             Round round1 = new Round(Players, chipsController, cardDealing);
             round1.doRound(s);
 
@@ -77,7 +77,7 @@ public class Game {
             // WYSLIJ INFO O FLOPIE
             out.println(message);
 
-
+            System.out.println("ZACZYNA SIE RUNDA 2");
             Round round2 = new Round(Players, chipsController, cardDealing);
             round2.doRound(s);
 
@@ -85,7 +85,7 @@ public class Game {
             // WYSLIJ INFO O RIVERZE
             out.println(message);
 
-
+            System.out.println("ZACZYNA SIE RUNDA 3");
             Round round3 = new Round(Players, chipsController, cardDealing);
             round3.doRound(s);
 
@@ -94,6 +94,7 @@ public class Game {
             // WYSLIJ INFO O TURNIE
             out.println(message);
 
+            System.out.println("ZACZYNA SIE RUNDA 4");
             Round round4 = new Round(Players, chipsController, cardDealing);
             round4.doRound(s);
 
@@ -105,6 +106,8 @@ public class Game {
             win = Scores.indexOf(Collections.max(Scores));
             Players.get(win).setChips(chipsController.getPot());
             chipsController.finishRound();
+            System.out.println("WYGRAL GRACZ");
+            System.out.println(Players.get(win).getName());
             // WYSLIJ INFO KTO WYGRAL
 
         }
