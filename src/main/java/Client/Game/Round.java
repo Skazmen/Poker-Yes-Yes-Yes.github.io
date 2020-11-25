@@ -16,7 +16,7 @@ public class Round {
     private ArrayList<Player> playersAbleToBet;
     private ChipsController chipsController;
     private CardDealing cardDealing;
-    private static int roundCount;
+    private static int roundCount = 1;
 
     public Round(
             ArrayList<Player> players,
@@ -27,7 +27,7 @@ public class Round {
         this.chipsController = chipsController;
         this.cardDealing = cardDealing;
 
-        resetRoundCount();
+        //resetRoundCount();
         this.setQueue();
     }
 
@@ -55,7 +55,6 @@ public class Round {
     }
 
     public void doRound(Socket socket) throws IOException {
-        roundCount++;
         if(roundCount == 1)
             chipsController.startRound(roundCount);
 
@@ -67,6 +66,7 @@ public class Round {
             // W KAŻDEJ 10-SEKUNDOWEJ TURZE KTOŚ MOŻE COŚ ZMIENIĆ
 
         }
+        roundCount++;
         resetQueue();
 
         for (Player player : players) {

@@ -113,13 +113,21 @@ public class Game {
 
             win = Scores.indexOf(Collections.max(Scores));
             Players.get(win).setChips(chipsController.getPot());
-            chipsController.finishRound();
 
             System.out.println("WYGRAL GRACZ");
             System.out.println(Players.get(win).getName());
             // WYSLIJ INFO KTO WYGRAL
 
+            for(Player player : Players){
+                if(player.playingGame())
+                    player.setPlayingRound(true);
+            }
             resetRoundCount();
+            //Player tempPlayer = Players.get(0);
+            //Players.remove(0);
+            //Players.add(tempPlayer);
+
+            chipsController.finishRound();
         }
     }
 }

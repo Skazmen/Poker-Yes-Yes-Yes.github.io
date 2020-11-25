@@ -38,6 +38,9 @@ public class ChipsController {
 
     public void finishRound() {
         setPot(0);
+        for(Player player : players){
+            player.setBet(0);
+        }
     }
 
     private void setPot(int pot) {
