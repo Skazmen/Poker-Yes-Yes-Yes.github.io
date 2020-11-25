@@ -28,7 +28,6 @@ public class CardDealing {
                 player.setHand(new Hand(deck.get(index), deck.get(index+1)));
                 index += 2;
 
-                System.out.println(player.getName() + ":" + player.getHand().getCard1().getSuit() + player.getHand().getCard1().getValue() + "," + player.getHand().getCard2().getSuit() + player.getHand().getCard2().getValue() + ";");
                 str.append(player.getName() + ":" + player.getHand().getCard1().getSuit() + player.getHand().getCard1().getValue() + "," + player.getHand().getCard2().getSuit() + player.getHand().getCard2().getValue() + ";");
             }
         }
@@ -38,21 +37,33 @@ public class CardDealing {
         return str ;
     }
 
-    public void dealFlop() {
+    public StringBuilder dealFlop() {
+        StringBuilder str = new StringBuilder("flop:");
+
         for(int i = 0; i < 3; i++) {
-            System.out.println(commonCards.get(i).toString());
+            str.append(commonCards.get(i).getSuit() + commonCards.get(i).getValue() + ",");
         }
+
+        return str ;
     }
 
-    public void dealRiver() {
+    public StringBuilder dealRiver() {
+        StringBuilder str = new StringBuilder("river:");
+
         for(int i = 0; i < 4; i++) {
-            System.out.println(commonCards.get(i).toString());
+            str.append(commonCards.get(i).getSuit() + commonCards.get(i).getValue() + ",");
         }
+
+        return str;
     }
 
-    public void dealTurn() {
+    public StringBuilder dealTurn() {
+        StringBuilder str = new StringBuilder("turn:");
+
         for(int i = 0; i < commonCards.size(); i++) {
-            System.out.println(commonCards.get(i).toString());
+            str.append(commonCards.get(i).getSuit() + commonCards.get(i).getValue() + ",");
         }
+
+        return str;
     }
 }
