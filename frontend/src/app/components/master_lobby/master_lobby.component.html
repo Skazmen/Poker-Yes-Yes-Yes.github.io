@@ -1,0 +1,50 @@
+<h1>Welcome to Grand Poker</h1>
+
+<div class="centerStuff">
+  <h2>Nowy Stół</h2>
+</div>
+
+<main>
+
+  <div class="row">
+    <div class="column" style="background-color:#aaa;">
+      <p>Gracz 1: {{ player1 }}</p>
+      <p>Gracz 2: {{ player2 }}</p>
+      <p>Gracz 3: {{ player3 }}</p>
+      <p>Gracz 4: {{ player4 }}</p>
+      <p>Gracz 5: {{ player5 }}</p>
+      <p>Gracz 6: {{ player6 }}</p>
+      <p>Gracz 7: {{ player7 }}</p>
+      <p>Gracz 8: {{ player8 }}</p>
+    </div>
+    <div class="column" style="background-color:#bbb;">
+      <p>Kwota Startowa: {{ startMoney }}</p><br>
+      <p>Duża Ciemna: {{ bigDark }}</p><br>
+      <p>Mała Ciemna: {{ lilDark }}</p><br><br>
+      <p>Numer Stołu: {{ tableId }}</p>
+    </div>
+    <div class="column" style="background-color:#ccc;">
+      <h2>Bot:</h2>
+      <p>Poziom Trudności</p>
+
+      <input type="radio" id="easy" name="level" value="easy">
+      <label for="easy">Łatwy</label><br>
+      <input type="radio" id="medium" name="level" value="medium">
+      <label for="medium">Średni</label><br>
+      <input type="radio" id="hard" name="level" value="hard">
+      <label for="hard">Trudny</label><br><br>
+
+      <button>Dodaj Bota</button>
+    </div>
+  </div>
+  <br>
+  <button>Dodaj Gracza Offline</button><br>
+  <p class="bigger">Stół Offline:      <label class="switch">
+    <input type="checkbox">
+    <span class="slider round"></span><br></label></p>
+
+
+</main>
+
+
+

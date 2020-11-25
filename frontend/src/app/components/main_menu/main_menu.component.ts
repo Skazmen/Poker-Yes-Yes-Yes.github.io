@@ -9,7 +9,15 @@ import {Router} from '@angular/router';
 })
 
 export class MainMenuComponent implements OnInit {
+  get user(): string {
+    return this._user;
+  }
+
+  set user(value: string) {
+    this._user = value;
+  }
   title = 'app';
+  private _user = 'User';
 
   constructor(private router: Router) {}
 
@@ -30,5 +38,9 @@ export class MainMenuComponent implements OnInit {
 
   goSearch(): void {
     this.router.navigate([`search`]);
+  }
+
+  goLobby(): void {
+    this.router.navigate([`mLobby`]);
   }
 }
