@@ -1,8 +1,8 @@
-<h1>Welcome to Grand Poker</h1>
+<h1>Welcome to Grand Poker, {{ user }}</h1>
 
 <main>
   <div class = "btn-group">
-    <button value="make" name="make" >Stwórz nowy stół</button>
+    <button value="make" name="make" (click)="goLobby()" >Stwórz nowy stół</button>
     <button value="join" name="join" (click)="goSearch()" >Dołącz do stołu</button><br>
     <button value="join" name="join" (click)="goRanks()" >Rankingi</button>
     <button value="join" name="join" (click)="goOptions()" >Opcje</button>
