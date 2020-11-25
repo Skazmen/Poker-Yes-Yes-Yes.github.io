@@ -16,7 +16,6 @@ public class Turn {
         currentPlayer.turnsInRound++;
         String input = "";
 
-        PrintStream out = new PrintStream(socket.getOutputStream());
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
         System.out.println(currentPlayer.getName());
@@ -48,7 +47,6 @@ public class Turn {
                 break;
         }
 
-        out.println("done");
 
         // value:300 type:bet --> chipsController.doBet(300,currentPlayer);
 

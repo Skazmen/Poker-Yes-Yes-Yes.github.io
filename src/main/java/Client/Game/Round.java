@@ -5,6 +5,7 @@ import Client.Controllers.ChipsController;
 import Client.Players.Player;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -17,6 +18,7 @@ public class Round {
     private ChipsController chipsController;
     private CardDealing cardDealing;
     private static int roundCount = 1;
+    private boolean stop_game = false;
 
     public Round(
             ArrayList<Player> players,
@@ -58,12 +60,18 @@ public class Round {
         if(roundCount == 1)
             chipsController.startRound(roundCount);
 
+        PrintStream out = new PrintStream(socket.getOutputStream());
+
         while (!ifRoundShouldBeStopped()){
             Player currentPlayer = playerQueue.getFirst();
             playerQueue.removeFirst();
             playerQueue.addLast(currentPlayer);
             Turn.turn(currentPlayer, chipsController, socket);
-            // W KAŻDEJ 10-SEKUNDOWEJ TURZE KTOŚ MOŻE COŚ ZMIENIĆ
+
+            if (!ifRoundShouldBeStopped()){
+                out.println("done");
+            }
+
 
         }
         roundCount++;
@@ -100,6 +108,7 @@ public class Round {
         if (playersAbleToBet.size() <= 1) {
             stop = true;
             bigBlindTurn = true;
+            stop_game = true;
         }
         else if (playersAbleToBet.size() >= 2) {
             firstBet = playersAbleToBet.get(0).getBet();
@@ -142,4 +151,5 @@ public class Round {
     public static void fold(Player player) {
         player.setPlayingRound(false);
     }
+
 }

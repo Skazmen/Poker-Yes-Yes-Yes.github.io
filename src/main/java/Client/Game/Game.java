@@ -54,6 +54,10 @@ public class Game {
             current_player++;
         }
 
+        Socket s = new Socket("localhost", 6967);
+        PrintStream out = new PrintStream(s.getOutputStream());
+        BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+
         while(!game_end) {
             ArrayList<Integer> Scores = new ArrayList<>(Arrays.asList(new Integer[8]));
             Collections.fill(Scores,0);
@@ -65,8 +69,6 @@ public class Game {
             StringBuilder message;
             chipsController.setPot(0);
 
-            Socket s = new Socket("localhost", 6967);
-            PrintStream out = new PrintStream(s.getOutputStream());
 
             message = cardDealing.dealPlayerHand();
             // WYSLIJ INFO O KARTACH KAZDEGO GRACZA
@@ -87,10 +89,12 @@ public class Game {
             Round round2 = new Round(Players, chipsController, cardDealing);
             round2.doRound(s);
 
+
             message = cardDealing.dealRiver();
             // WYSLIJ INFO O RIVERZE
             out.println(message);
             System.out.println(message);
+
 
             System.out.println("ZACZYNA SIE RUNDA 3");
             Round round3 = new Round(Players, chipsController, cardDealing);
@@ -105,6 +109,8 @@ public class Game {
             System.out.println("ZACZYNA SIE RUNDA 4");
             Round round4 = new Round(Players, chipsController, cardDealing);
             round4.doRound(s);
+
+
 
             for(i=0;i<Players.size();i++){
                 if(Players.get(i).playingGame() && Players.get(i).playingRound())
