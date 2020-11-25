@@ -3,12 +3,12 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './options.component.html',
-  styleUrls: ['./options.component.scss']
+  templateUrl: './game_search.component.html',
+  styleUrls: ['./game_search.component.scss']
 
 })
 
-export class OptionsComponent implements OnInit{
+export class GameSearchComponent implements OnInit{
   title = 'app';
 
   constructor(private router: Router) {}
@@ -20,9 +20,9 @@ export class OptionsComponent implements OnInit{
     this.router.navigate([`mainMenu`]);
   }
 
-  deleteAcc(): void {
+  searchGame(): void {
   }
 
-  updatePass(): void {
+  searchGameRandom(): void {
   }
 }
