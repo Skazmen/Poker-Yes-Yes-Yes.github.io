@@ -11,7 +11,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Round {
-    private ArrayList<Player> players;
+    private static ArrayList<Player> players;
     private LinkedList<Player> playerQueue;
     private ArrayList<Player> playersAbleToBet;
     private ChipsController chipsController;
