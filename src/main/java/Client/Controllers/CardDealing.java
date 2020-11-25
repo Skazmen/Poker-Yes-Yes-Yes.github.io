@@ -27,8 +27,8 @@ public class CardDealing {
                 player.setHand(new Hand(deck.get(index), deck.get(index+1)));
                 index += 2;
 
-                System.out.println(player.getName() + ":" + player.getHand().getCard1() + "," + deck.get(index+1) + ";");
-                str.append(player.getName() + ":" + deck.get(index) + "," + deck.get(index+1) + ";");
+                System.out.println(player.getName() + ":" + player.getHand().getCard1().getSuit() + player.getHand().getCard1().getValue() + "," + player.getHand().getCard2().getSuit() + player.getHand().getCard2().getValue() + ";");
+                str.append(player.getName() + ":" + player.getHand().getCard1().getSuit() + player.getHand().getCard1().getValue() + "," + player.getHand().getCard2().getSuit() + player.getHand().getCard2().getValue() + ";");
             }
         }
 

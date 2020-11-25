@@ -11,9 +11,7 @@ import Client.Table.CommonCards;
 import Client.Table.Seat;
 import Client.Players.Player;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,12 +63,20 @@ public class Game {
 
             message = cardDealing.dealPlayerHand();
             // WYSLIJ INFO O KARTACH KAZDEGO GRACZA
-            Socket s = new Socket("localhost", 6969);
+
+            Socket s = new Socket("localhost", 6967);
 
             PrintStream out
                     = new PrintStream(s.getOutputStream());
 
+            BufferedReader in
+                    = new BufferedReader(
+                    new InputStreamReader(
+                            s.getInputStream()));
+
             out.println(message);
+            System.out.println(in.readLine());
+
 
 
 

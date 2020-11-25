@@ -57,9 +57,6 @@ public class Round {
         roundCount++;
         chipsController.startRound();
 
-        for (Player player : players) {
-            System.out.println(player.toString());
-        }
         while (!ifRoundShouldBeStopped()){
             Player currentPlayer = playerQueue.getFirst();
             playerQueue.removeFirst();
@@ -85,6 +82,7 @@ public class Round {
 
     private boolean ifRoundShouldBeStopped() {
 
+        ArrayList<Player> playersAbleToBet = new ArrayList<>();
         int firstBet;
         boolean sameBets = true;
         boolean stop = false;

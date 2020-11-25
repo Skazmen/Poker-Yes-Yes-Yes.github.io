@@ -1,6 +1,5 @@
 package Server;
 
-import Client.Game.Game;
 import java.io.*;
 import java.net.*;
 
@@ -11,11 +10,10 @@ class Server {
     {
 
         // Create server Socket
-        ServerSocket ss = new ServerSocket(6969);
+        ServerSocket ss = new ServerSocket(6967);
 
         // connect it to client socket
 
-        Game game = new Game(4, 1001, 50, 100);
 
         Socket s = ss.accept();
         System.out.println("Connection established");
