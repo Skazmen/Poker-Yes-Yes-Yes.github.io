@@ -104,10 +104,6 @@ public class Round {
             sameBets = true;
             for (Player player : playersAbleToBet) {
                 if(player.getBet() != firstBet) {
-                    System.out.println("BŁĄÐ");
-                    System.out.println(player.getBet());
-                    System.out.println(firstBet);
-                    System.out.println("BŁĄÐ");
                     sameBets = false;
                     break;
                 }
@@ -124,10 +120,7 @@ public class Round {
                         bigBlindTurn = true;
             }
         }
-        System.out.println("AAAAAAAAAAAAAAAAAAAA");
-        System.out.println(sameBets);
-        System.out.println(bigBlindTurn);
-        System.out.println("AAAAAAAAAAAAAAAAAAAA");
+
         if(sameBets && bigBlindTurn)
             stop = true;
 
