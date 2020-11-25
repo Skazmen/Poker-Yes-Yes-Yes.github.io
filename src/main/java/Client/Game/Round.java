@@ -87,14 +87,16 @@ public class Round {
         int firstBet;
         boolean sameBets = true;
         boolean stop = false;
+        boolean bigBlindTurn = false;
         for (Player player : players) {
             if (player.playingGame() && player.playingRound())
-                if (player.getChips() != 0)
+                if (player.getChips() > 0)
                     playersAbleToBet.add(player);
 
         }
         if (playersAbleToBet.size() <= 1) {
             stop = true;
+            bigBlindTurn = true;
         }
         else if (playersAbleToBet.size() >= 2) {
             firstBet = playersAbleToBet.get(0).getBet();
@@ -102,15 +104,23 @@ public class Round {
                 if(player.getBet() != firstBet)
                     sameBets = false;
                     break;
+
             }
+            System.out.println("===========");
+            for (Player player : players) {
+                System.out.println(player.getBet());
+            }
+            System.out.println("===========");
             for (Player player : players) {
                 if(player.isBigBlind())
                     if(player.turnsInRound > 0)
-                        if(sameBets)
-                            stop = true;
+                        bigBlindTurn = true;
             }
         }
-        return stop;
+        if(stop && bigBlindTurn)
+        return true;
+
+        return false;
     }
 
     public void bet(int bet, Player player) {
