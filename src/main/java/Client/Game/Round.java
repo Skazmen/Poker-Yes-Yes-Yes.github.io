@@ -50,8 +50,8 @@ public class Round {
         this.setSmallBlind(true);
     }
 
-    private static void resetRoundCount() {
-        roundCount = 0;
+    public static void resetRoundCount() {
+        roundCount = 1;
     }
 
     public void doRound(Socket socket) throws IOException {
@@ -68,10 +68,12 @@ public class Round {
 
         }
         resetQueue();
+
         for (Player player : players) {
             player.turnsInRound = 0;
         }
 
+        chipsController.finishRound();
     }
 
     private void setSmallBlind(boolean isSmallBlind) {

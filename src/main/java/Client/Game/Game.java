@@ -18,15 +18,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
 
+import static Client.Game.Round.resetRoundCount;
+
 public class Game {
 
     int chips, smallBlind, bigBlind;
     int current_player = 0;
-    boolean game_end = false;
     int i;
-    int round = 0;
     int win;
+
+    boolean game_end = false;
+
     Random rand;
+
     ArrayList<Player> Players = new ArrayList<>();
     ArrayList<Seat> Seats = new ArrayList<>();
 
@@ -39,8 +43,9 @@ public class Game {
 
         this.smallBlind = smallBlind;
         this.bigBlind = bigBlind;
+
         if(Players.size() < 2){
-            System.out.println("SOMETHING WENT WRONG");
+            System.out.println("We lost our players to play with");
         }
         java.util.Collections.shuffle(Players);
         for(Player player : Players) {
@@ -61,8 +66,6 @@ public class Game {
 
             Socket s = new Socket("localhost", 6967);
             PrintStream out = new PrintStream(s.getOutputStream());
-            BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
-
 
             message = cardDealing.dealPlayerHand();
             // WYSLIJ INFO O KARTACH KAZDEGO GRACZA
@@ -107,24 +110,16 @@ public class Game {
                     Scores.set(i, evaluator.doAnalyzeCards(Players.get(i)));
 
             }
+
             win = Scores.indexOf(Collections.max(Scores));
             Players.get(win).setChips(chipsController.getPot());
             chipsController.finishRound();
+
             System.out.println("WYGRAL GRACZ");
             System.out.println(Players.get(win).getName());
             // WYSLIJ INFO KTO WYGRAL
 
+            resetRoundCount();
         }
     }
-
-
-    public Card randomCard(ArrayList<Card> myDeck) {
-        rand = new Random();
-        return myDeck.get(rand.nextInt(myDeck.size()));
-    }
-
-
-
-
-
 }
