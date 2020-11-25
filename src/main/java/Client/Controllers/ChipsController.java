@@ -25,25 +25,27 @@ public class ChipsController {
                 if (player.isBigBlind()) {
                     player.setChips(player.getChips() - bigBlind);
                     doBet(bigBlind, player);
+                    //increasePot(bigBlind);
                 } else if (player.isSmallBlind()) {
                     player.setChips(player.getChips() - smallBlind);
                     doBet(smallBlind, player);
+                    //increasePot(smallBlind);
                 }
             }
 
             setCall(bigBlind);
-            increasePot(bigBlind + smallBlind);
+            //increasePot(bigBlind + smallBlind);
         }
     }
 
     public void finishRound() {
-        setPot(0);
+        //setPot(0);
         for(Player player : players){
             player.setBet(0);
         }
     }
 
-    private void setPot(int pot) {
+    public void setPot(int pot) {
         this.pot = pot;
     }
 

@@ -63,6 +63,7 @@ public class Game {
             ChipsController chipsController = new ChipsController(Players, smallBlind, bigBlind );
             CardDealing cardDealing = new CardDealing(Players, deck);
             StringBuilder message;
+            chipsController.setPot(0);
 
             Socket s = new Socket("localhost", 6967);
             PrintStream out = new PrintStream(s.getOutputStream());
@@ -116,6 +117,8 @@ public class Game {
 
             System.out.println("WYGRAL GRACZ");
             System.out.println(Players.get(win).getName());
+            System.out.println("ILE WYGRAL?");
+            System.out.println(chipsController.getPot());
             // WYSLIJ INFO KTO WYGRAL
 
             for(Player player : Players){
