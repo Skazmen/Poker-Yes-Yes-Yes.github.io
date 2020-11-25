@@ -67,6 +67,7 @@ public class Game {
             message = cardDealing.dealPlayerHand();
             // WYSLIJ INFO O KARTACH KAZDEGO GRACZA
             out.println(message);
+            System.out.println(message);
 
             System.out.println("ZACZYNA SIE RUNDA 1");
             Round round1 = new Round(Players, chipsController, cardDealing);
@@ -76,6 +77,7 @@ public class Game {
             message = cardDealing.dealFlop();
             // WYSLIJ INFO O FLOPIE
             out.println(message);
+            System.out.println(message);
 
             System.out.println("ZACZYNA SIE RUNDA 2");
             Round round2 = new Round(Players, chipsController, cardDealing);
@@ -84,6 +86,7 @@ public class Game {
             message = cardDealing.dealRiver();
             // WYSLIJ INFO O RIVERZE
             out.println(message);
+            System.out.println(message);
 
             System.out.println("ZACZYNA SIE RUNDA 3");
             Round round3 = new Round(Players, chipsController, cardDealing);
@@ -93,6 +96,7 @@ public class Game {
             message = cardDealing.dealTurn();
             // WYSLIJ INFO O TURNIE
             out.println(message);
+            System.out.println(message);
 
             System.out.println("ZACZYNA SIE RUNDA 4");
             Round round4 = new Round(Players, chipsController, cardDealing);
