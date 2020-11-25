@@ -56,7 +56,8 @@ public class Round {
 
     public void doRound(Socket socket) throws IOException {
         roundCount++;
-        chipsController.startRound();
+        if(roundCount == 1)
+            chipsController.startRound(roundCount);
 
         while (!ifRoundShouldBeStopped()){
             Player currentPlayer = playerQueue.getFirst();
@@ -100,14 +101,20 @@ public class Round {
         }
         else if (playersAbleToBet.size() >= 2) {
             firstBet = playersAbleToBet.get(0).getBet();
-            for (Player player : players) {
-                if(player.getBet() != firstBet)
+            sameBets = true;
+            for (Player player : playersAbleToBet) {
+                if(player.getBet() != firstBet) {
+                    System.out.println("BŁĄÐ");
+                    System.out.println(player.getBet());
+                    System.out.println(firstBet);
+                    System.out.println("BŁĄÐ");
                     sameBets = false;
                     break;
-
+                }
             }
             System.out.println("===========");
             for (Player player : players) {
+                if(player.playingRound() && player.playingGame())
                 System.out.println(player.getBet());
             }
             System.out.println("===========");
@@ -117,10 +124,14 @@ public class Round {
                         bigBlindTurn = true;
             }
         }
-        if(stop && bigBlindTurn)
-        return true;
+        System.out.println("AAAAAAAAAAAAAAAAAAAA");
+        System.out.println(sameBets);
+        System.out.println(bigBlindTurn);
+        System.out.println("AAAAAAAAAAAAAAAAAAAA");
+        if(sameBets && bigBlindTurn)
+            stop = true;
 
-        return false;
+        return stop;
     }
 
     public void bet(int bet, Player player) {
