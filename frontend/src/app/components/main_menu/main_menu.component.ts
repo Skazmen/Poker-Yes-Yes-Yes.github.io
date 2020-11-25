@@ -23,4 +23,8 @@ export class MainMenuComponent implements OnInit {
   goRanks(): void {
     this.router.navigate([`ranks`]);
   }
+
+  goOptions(): void {
+    this.router.navigate([`options`])
+  }
 }

@@ -3,12 +3,12 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './ranking.component.html',
-  styleUrls: ['./ranking.component.scss']
+  templateUrl: './options.component.html',
+  styleUrls: ['./options.component.scss']
 
 })
 
-export class RankingComponent implements OnInit{
+export class OptionsComponent implements OnInit{
   title = 'app';
 
   constructor(private router: Router) {}

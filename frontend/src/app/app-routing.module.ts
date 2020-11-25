@@ -5,6 +5,7 @@ import {MainMenuComponent} from './components/main_menu/main_menu.component';
 import {StartMenuComponent} from './components/start/start_menu.component';
 import {LoginComponent} from './components/login/login.component';
 import {RankingComponent} from './components/ranking/ranking.component';
+import {OptionsComponent} from './components/options/options.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'mainMenu', component: MainMenuComponent},
   {path: 'ranks', component: RankingComponent},
+  {path: 'options', component: OptionsComponent},
   {path: '', component: StartMenuComponent},
 ];
 
