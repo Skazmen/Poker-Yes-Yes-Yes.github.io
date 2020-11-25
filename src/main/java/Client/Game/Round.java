@@ -5,6 +5,7 @@ import Client.Controllers.ChipsController;
 import Client.Players.Player;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -53,7 +54,7 @@ public class Round {
         roundCount = 0;
     }
 
-    public void doRound() throws IOException {
+    public void doRound(Socket socket) throws IOException {
         roundCount++;
         chipsController.startRound();
 
@@ -61,7 +62,7 @@ public class Round {
             Player currentPlayer = playerQueue.getFirst();
             playerQueue.removeFirst();
             playerQueue.addLast(currentPlayer);
-            Turn.turn(currentPlayer, chipsController);
+            Turn.turn(currentPlayer, chipsController, socket);
             // W KAŻDEJ 10-SEKUNDOWEJ TURZE KTOŚ MOŻE COŚ ZMIENIĆ
 
         }

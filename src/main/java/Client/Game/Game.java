@@ -66,30 +66,36 @@ public class Game {
 
             message = cardDealing.dealPlayerHand();
             // WYSLIJ INFO O KARTACH KAZDEGO GRACZA
-
             out.println(message);
-            System.out.println(in.readLine());
 
 
             Round round1 = new Round(Players, chipsController, cardDealing);
-            round1.doRound();
+            round1.doRound(s);
 
 
-            cardDealing.dealFlop();
+            message = cardDealing.dealFlop();
             // WYSLIJ INFO O FLOPIE
-
+            out.println(message);
 
 
             Round round2 = new Round(Players, chipsController, cardDealing);
-            round2.doRound();
-            cardDealing.dealRiver();
+            round2.doRound(s);
+
+            message = cardDealing.dealRiver();
             // WYSLIJ INFO O RIVERZE
+            out.println(message);
+
+
             Round round3 = new Round(Players, chipsController, cardDealing);
-            round3.doRound();
-            cardDealing.dealTurn();
+            round3.doRound(s);
+
+
+            message = cardDealing.dealTurn();
             // WYSLIJ INFO O TURNIE
+            out.println(message);
+
             Round round4 = new Round(Players, chipsController, cardDealing);
-            round4.doRound();
+            round4.doRound(s);
 
             for(i=0;i<Players.size();i++){
                 if(Players.get(i).playingGame() && Players.get(i).playingRound())
