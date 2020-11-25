@@ -10,7 +10,7 @@ class Server {
     {
 
         // Create server Socket
-        ServerSocket ss = new ServerSocket(6969);
+        ServerSocket ss = new ServerSocket(6967);
 
         // connect it to client socket
 
