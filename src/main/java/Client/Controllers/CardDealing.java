@@ -17,6 +17,7 @@ public class CardDealing {
         this.players = players;
         this.deck = deck;
         this.index = 0;
+        java.util.Collections.shuffle(deck);
     }
 
     public StringBuilder dealPlayerHand() {

@@ -59,31 +59,27 @@ public class Game {
             CardDealing cardDealing = new CardDealing(Players, deck);
             StringBuilder message;
 
+            Socket s = new Socket("localhost", 6967);
+            PrintStream out = new PrintStream(s.getOutputStream());
+            BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
 
 
             message = cardDealing.dealPlayerHand();
             // WYSLIJ INFO O KARTACH KAZDEGO GRACZA
 
-            Socket s = new Socket("localhost", 6967);
-
-            PrintStream out
-                    = new PrintStream(s.getOutputStream());
-
-            BufferedReader in
-                    = new BufferedReader(
-                    new InputStreamReader(
-                            s.getInputStream()));
-
             out.println(message);
             System.out.println(in.readLine());
 
 
-
-
             Round round1 = new Round(Players, chipsController, cardDealing);
             round1.doRound();
+
+
             cardDealing.dealFlop();
             // WYSLIJ INFO O FLOPIE
+
+
+
             Round round2 = new Round(Players, chipsController, cardDealing);
             round2.doRound();
             cardDealing.dealRiver();
