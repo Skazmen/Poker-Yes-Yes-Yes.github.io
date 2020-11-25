@@ -19,4 +19,10 @@ export class OptionsComponent implements OnInit{
   goBack(): void {
     this.router.navigate([`mainMenu`]);
   }
+
+  deleteAcc(): void {
+  }
+
+  updatePass(): void {
+  }
 }

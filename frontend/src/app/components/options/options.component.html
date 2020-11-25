@@ -30,7 +30,10 @@
       <td class="tg-0lax">Zmień hasło</td>
       <td class="tg-0lax">
         <label for="oldPass">Stare Hasło:    </label><input type="password" id="oldPass" name="oldPass" value=""><br>
-        <label for="newPass">Nowe Hasło: </label><input type="password" id="newPass" name="newPass" value=""></td>
+        <label for="newPass">Nowe Hasło: </label><input type="password" id="newPass" name="newPass" value=""><br>
+
+        <button value="update" name="update" (click)="updatePass()"> Aktualizuj Hasło </button><br>
+      </td>
     </tr>
     <tr>
       <td class="tg-0lax">Awatar</td>
@@ -38,6 +41,9 @@
     </tr>
     </tbody>
   </table>
+
+  <button value="deleteAcc" name="deleteAcc" (click)="deleteAcc()"> Usuń Konto </button><br>
+  <button value="goBack" name="goBack" (click)="goBack()"> Wróć </button>
 
 </main>
 

@@ -13,6 +13,7 @@ import {MainMenuComponent} from './components/main_menu/main_menu.component';
 import {LoginComponent} from './components/login/login.component';
 import {RankingComponent} from './components/ranking/ranking.component';
 import {OptionsComponent} from './components/options/options.component';
+import {GameSearchComponent} from './components/game_search/game_search.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {OptionsComponent} from './components/options/options.component';
     SignupComponent,
     LoginComponent,
     RankingComponent,
-    OptionsComponent
+    OptionsComponent,
+    GameSearchComponent,
   ],
   imports: [
     BrowserModule,

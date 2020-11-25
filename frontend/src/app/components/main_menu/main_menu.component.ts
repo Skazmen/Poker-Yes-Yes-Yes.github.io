@@ -25,6 +25,10 @@ export class MainMenuComponent implements OnInit {
   }
 
   goOptions(): void {
-    this.router.navigate([`options`])
+    this.router.navigate([`options`]);
+  }
+
+  goSearch(): void {
+    this.router.navigate([`search`]);
   }
 }

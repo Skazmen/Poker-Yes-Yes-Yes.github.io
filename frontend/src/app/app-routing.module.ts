@@ -6,6 +6,7 @@ import {StartMenuComponent} from './components/start/start_menu.component';
 import {LoginComponent} from './components/login/login.component';
 import {RankingComponent} from './components/ranking/ranking.component';
 import {OptionsComponent} from './components/options/options.component';
+import {GameSearchComponent} from './components/game_search/game_search.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'mainMenu', component: MainMenuComponent},
   {path: 'ranks', component: RankingComponent},
   {path: 'options', component: OptionsComponent},
+  {path: 'search', component: GameSearchComponent},
   {path: '', component: StartMenuComponent},
 ];
 
