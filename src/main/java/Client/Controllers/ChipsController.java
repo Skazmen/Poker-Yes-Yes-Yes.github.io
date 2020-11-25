@@ -23,8 +23,10 @@ public class ChipsController {
         for (Player player : players) {
             if (player.isBigBlind()) {
                 player.setChips(player.getChips() - bigBlind);
+                doBet(bigBlind, player);
             } else if (player.isSmallBlind()) {
                 player.setChips(player.getChips() - smallBlind);
+                doBet(smallBlind, player);
             }
         }
 
@@ -48,26 +50,39 @@ public class ChipsController {
         return pot;
     }
 
-    public void doCall(int call, Player player) {
-        if (bet > 0 || raise > 0) {
-            player.setChips(player.getChips() - call);
-            increasePot(call);
-        }
+    public void doCall(Player player) {
+        int max = findMaxBet(players);
+        player.setChips(-(max - player.getBet()));
+        increasePot(max - player.getBet());
+        player.setBet(max - player.getBet());
+
     }
 
     public void doBet(int bet, Player player) {
-        player.setChips(player.getChips() - bet);
-        player.setBet(bet);
+        player.setChips(-bet);
+        player.setBet(player.getBet() + bet);
         increaseRaise(bet);
         setCall(bet);
         increasePot(bet);
     }
 
     public void doRaise(int raise, Player player) {
-        player.setChips(player.getChips() - raise);
+        int max = findMaxBet(players);
+        player.setChips( -(max + raise - player.getBet()));
         setRaise(raise);
         setCall(raise);
-        increasePot(raise);
+        increasePot(max + raise - player.getBet());
+        player.setBet(max + raise);
+    }
+
+    public int findMaxBet(ArrayList<Player> players) {
+        int max = 0;
+        for(Player player : players){
+            if(player.getBet() > max)
+                max = player.getBet();
+
+        }
+        return max;
     }
 
     public void setBet(int bet) {
