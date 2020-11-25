@@ -68,6 +68,7 @@ public class Game {
             CardDealing cardDealing = new CardDealing(Players, deck);
             StringBuilder message;
             chipsController.setPot(0);
+            boolean stop = false;
 
 
             message = cardDealing.dealPlayerHand();
@@ -80,36 +81,42 @@ public class Game {
             round1.doRound(s);
 
 
-            message = cardDealing.dealFlop();
-            // WYSLIJ INFO O FLOPIE
-            out.println(message);
-            System.out.println(message);
+            if(!round1.get_stop()){
+                message = cardDealing.dealFlop();
+                // WYSLIJ INFO O FLOPIE
+                out.println(message);
+                System.out.println(message);
 
-            System.out.println("ZACZYNA SIE RUNDA 2");
-            Round round2 = new Round(Players, chipsController, cardDealing);
-            round2.doRound(s);
+                System.out.println("ZACZYNA SIE RUNDA 2");
+                Round round2 = new Round(Players, chipsController, cardDealing);
+                round2.doRound(s);
 
+                if(!round2.get_stop()){
 
-            message = cardDealing.dealRiver();
-            // WYSLIJ INFO O RIVERZE
-            out.println(message);
-            System.out.println(message);
-
-
-            System.out.println("ZACZYNA SIE RUNDA 3");
-            Round round3 = new Round(Players, chipsController, cardDealing);
-            round3.doRound(s);
+                    message = cardDealing.dealRiver();
+                    // WYSLIJ INFO O RIVERZE
+                    out.println(message);
+                    System.out.println(message);
 
 
-            message = cardDealing.dealTurn();
-            // WYSLIJ INFO O TURNIE
-            out.println(message);
-            System.out.println(message);
+                    System.out.println("ZACZYNA SIE RUNDA 3");
+                    Round round3 = new Round(Players, chipsController, cardDealing);
+                    round3.doRound(s);
 
-            System.out.println("ZACZYNA SIE RUNDA 4");
-            Round round4 = new Round(Players, chipsController, cardDealing);
-            round4.doRound(s);
+                    if(!round3.get_stop()){
+                        message = cardDealing.dealTurn();
+                        // WYSLIJ INFO O TURNIE
+                        out.println(message);
+                        System.out.println(message);
 
+                        System.out.println("ZACZYNA SIE RUNDA 4");
+                        Round round4 = new Round(Players, chipsController, cardDealing);
+                        round4.doRound(s);
+                    }
+
+                }
+
+            }
 
 
             for(i=0;i<Players.size();i++){

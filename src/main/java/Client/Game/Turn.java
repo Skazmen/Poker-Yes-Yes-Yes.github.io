@@ -18,7 +18,7 @@ public class Turn {
 
         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        System.out.println(currentPlayer.getName());
+        System.out.println("Player: " + currentPlayer.getName());
         input = in.readLine();
 
         String[] parts = input.split(" ");

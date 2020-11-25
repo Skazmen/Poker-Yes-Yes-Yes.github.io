@@ -60,15 +60,21 @@ public class Round {
         if(roundCount == 1)
             chipsController.startRound(roundCount);
 
+
+
         PrintStream out = new PrintStream(socket.getOutputStream());
 
-        while (!ifRoundShouldBeStopped()){
+        boolean stop_doround = ifRoundShouldBeStopped();
+
+        while (!stop_doround){
             Player currentPlayer = playerQueue.getFirst();
             playerQueue.removeFirst();
             playerQueue.addLast(currentPlayer);
             Turn.turn(currentPlayer, chipsController, socket);
 
-            if (!ifRoundShouldBeStopped()){
+            stop_doround = ifRoundShouldBeStopped();
+
+            if (!stop_doround){
                 out.println("done");
             }
 
@@ -152,4 +158,7 @@ public class Round {
         player.setPlayingRound(false);
     }
 
+    public boolean get_stop(){
+        return stop_game;
+    }
 }
