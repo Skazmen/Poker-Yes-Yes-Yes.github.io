@@ -214,6 +214,26 @@ public class EvaluatorTest {
     }
 
     @Test
+    public void testPair2() {
+        commonCards.clear();
+        commonCards.add(new Card(SuitEnum.HEART.getSuit(), 3));
+        commonCards.add(new Card(SuitEnum.DIAMOND.getSuit(), 5));
+        commonCards.add(new Card(SuitEnum.DIAMOND.getSuit(), 8));
+        commonCards.add(new Card(SuitEnum.HEART.getSuit(), 4));
+        commonCards.add(new Card(SuitEnum.HEART.getSuit(), 1));
+
+        evaluator = new Evaluator(players, commonCards);
+
+        Card card1 = new Card("HEART", 4);
+        Card card2 = new Card("DIAMOND", 9);
+
+        Hand hand = new Hand(card1, card2);
+        players.get(0).setHand(hand);
+
+        assertEquals(Evaluator.PAIR, evaluator.doAnalyzeCards(players.get(0)));
+    }
+
+    @Test
     public void testHigh() {
         commonCards.clear();
         commonCards.add(new Card(SuitEnum.HEART.getSuit(), 3));

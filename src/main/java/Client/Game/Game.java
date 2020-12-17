@@ -82,7 +82,7 @@ public class Game {
                 round2.doRound(server);
 
                 if(!round2.get_stop()){
-                    message = cardDealing.dealRiver();
+                    message = cardDealing.dealTurn();
                     out.println(message);
                     System.out.println(message);
 
@@ -91,7 +91,7 @@ public class Game {
                     round3.doRound(server);
 
                     if(!round3.get_stop()){
-                        message = cardDealing.dealTurn();
+                        message = cardDealing.dealRiver();
                         out.println(message);
                         System.out.println(message);
 
@@ -103,23 +103,44 @@ public class Game {
             }
 
 
-            for(i=0; i< playerList.size(); i++){
-                if(playerList.get(i).playingGame() && playerList.get(i).playingRound())
+            for(i=0; i< playerList.size(); i++) {
+                if (playerList.get(i).playingGame() && playerList.get(i).playingRound()) {
                     Scores.set(i, evaluator.doAnalyzeCards(playerList.get(i)));
+                    System.out.println(Scores.get(i));
+                }
             }
 
             win = Scores.indexOf(Collections.max(Scores));
-            playerList.get(win).setChips(chipsController.getPot());
+            ArrayList<Player> winners = new ArrayList<>();
+            ArrayList<Integer> winnerIndexList = new ArrayList<Integer>();
 
-            System.out.println("WYGRAL GRACZ");
-            System.out.println(playerList.get(win).getName());
-            System.out.println("ILE WYGRAL?");
-            System.out.println(chipsController.getPot());
+            for(i=0; i< playerList.size(); i++){
+                if(Scores.get(i) == Scores.get(win)){
+                    System.out.println(Scores.get(i) + " " + Scores.get(win));
+                    System.out.println("ktory raz");
+                    winners.add(playerList.get(i));
+                    winnerIndexList.add(i);
+                }
+            }
+
+            for(i=0; i< winners.size(); i++){
+                if(i != 0){
+                    System.out.println("ORAZ");
+                }
+
+                System.out.println("WYGRAL GRACZ");
+                System.out.println(playerList.get(winnerIndexList.get(i)).getName());
+
+                winners.get(i).setChips(Math.round(chipsController.getPot()/winners.size()));
+            }
+            System.out.println("JAKA WYGRANA?");
+            System.out.println(Math.round(chipsController.getPot()/winners.size()));
 
             for(Player player : playerList){
                 if(player.playingGame())
                     player.setPlayingRound(true);
             }
+
             resetRoundCount();
             chipsController.finishRound();
         }
