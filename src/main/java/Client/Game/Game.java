@@ -82,7 +82,7 @@ public class Game {
                 round2.doRound(server);
 
                 if(!round2.get_stop()){
-                    message = cardDealing.dealRiver();
+                    message = cardDealing.dealTurn();
                     out.println(message);
                     System.out.println(message);
 
@@ -91,7 +91,7 @@ public class Game {
                     round3.doRound(server);
 
                     if(!round3.get_stop()){
-                        message = cardDealing.dealTurn();
+                        message = cardDealing.dealRiver();
                         out.println(message);
                         System.out.println(message);
 
