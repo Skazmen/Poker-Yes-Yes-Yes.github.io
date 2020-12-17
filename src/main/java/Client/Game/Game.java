@@ -102,26 +102,44 @@ public class Game {
                 }
             }
 
-
             for(i=0; i< playerList.size(); i++){
                 if(playerList.get(i).playingGame() && playerList.get(i).playingRound())
                     Scores.set(i, evaluator.doAnalyzeCards(playerList.get(i)));
             }
 
             win = Scores.indexOf(Collections.max(Scores));
-            playerList.get(win).setChips(chipsController.getPot());
+            win = Scores.get(win);
+            ArrayList<Player> winners = new ArrayList<>();
+            ArrayList<Integer> winnersIndex = new ArrayList<>();
 
-            System.out.println("WYGRAL GRACZ");
-            System.out.println(playerList.get(win).getName());
-            System.out.println("ILE WYGRAL?");
-            System.out.println(chipsController.getPot());
+            for(i=0; i< playerList.size(); i++){
+                if(Scores.get(i) == win){
+                    winners.add(playerList.get(i));
+                    winnersIndex.add(i);
+                }
+            }
+
+            for(i=0; i< winners.size(); i++){
+                if(!(i == 0)) {
+                    System.out.println(" Oraz ");
+                }
+
+                System.out.println("Wygrał gracz: ");
+                System.out.println(winners.get(i).getName());
+            }
+
+            System.out.println("Jaka wygrana przypada na wygranego?");
+            System.out.println(chipsController.getPot()/winners.size());
 
             for(Player player : playerList){
                 if(player.playingGame())
                     player.setPlayingRound(true);
             }
+
             resetRoundCount();
             chipsController.finishRound();
+
+
         }
     }
 }
