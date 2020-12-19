@@ -66,4 +66,8 @@ public class CardDealing {
 
         return str;
     }
+
+    public CommonCards getCommonCards(){
+        return this.commonCards;
+    }
 }

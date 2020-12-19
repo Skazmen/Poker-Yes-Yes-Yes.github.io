@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static Client.Game.Round.resetRoundCount;
+import static java.lang.Integer.parseInt;
 
 public class Game {
 
@@ -38,11 +39,11 @@ public class Game {
         this.smallBlind = smallBlind;
         this.bigBlind = bigBlind;
 
-        if(playerList.size() < 2){
+        if (playerList.size() < 2) {
             System.out.println("We lost our players to play with");
         }
         java.util.Collections.shuffle(playerList);
-        for(Player player : playerList) {
+        for (Player player : playerList) {
             Seat s = new Seat(current_player, player);
             Seats.add(s);
             current_player++;
@@ -51,14 +52,14 @@ public class Game {
         Socket server = new Socket("localhost", 6967);
         PrintStream out = new PrintStream(server.getOutputStream());
 
-        while(!game_end) {
+        while (!game_end) {
             ArrayList<Integer> Scores = new ArrayList<>(Arrays.asList(new Integer[8]));
-            Collections.fill(Scores,0);
+            Collections.fill(Scores, 0);
             Deck deck = new Deck();
 
             CommonCards commonCards = new CommonCards(deck, 0);
             Evaluator evaluator = new Evaluator(playerList, commonCards);
-            ChipsController chipsController = new ChipsController(playerList, smallBlind, bigBlind );
+            ChipsController chipsController = new ChipsController(playerList, smallBlind, bigBlind);
             CardDealing cardDealing = new CardDealing(playerList, deck);
 
             StringBuilder message;
@@ -72,7 +73,7 @@ public class Game {
             Round round1 = new Round(playerList, chipsController, cardDealing);
             round1.doRound(server);
 
-            if(!round1.get_stop()){
+            if (!round1.get_stop()) {
                 message = cardDealing.dealFlop();
                 out.println(message);
                 System.out.println(message);
@@ -81,7 +82,7 @@ public class Game {
                 Round round2 = new Round(playerList, chipsController, cardDealing);
                 round2.doRound(server);
 
-                if(!round2.get_stop()){
+                if (!round2.get_stop()) {
                     message = cardDealing.dealTurn();
                     out.println(message);
                     System.out.println(message);
@@ -90,7 +91,7 @@ public class Game {
                     Round round3 = new Round(playerList, chipsController, cardDealing);
                     round3.doRound(server);
 
-                    if(!round3.get_stop()){
+                    if (!round3.get_stop()) {
                         message = cardDealing.dealRiver();
                         out.println(message);
                         System.out.println(message);
@@ -102,24 +103,40 @@ public class Game {
                 }
             }
 
-
-            for(i=0; i< playerList.size(); i++){
-                if(playerList.get(i).playingGame() && playerList.get(i).playingRound())
-                    Scores.set(i, evaluator.doAnalyzeCards(playerList.get(i)));
+            for (i = 0; i < playerList.size(); i++) {
+                if (playerList.get(i).playingGame() && playerList.get(i).playingRound()) {
+                    evaluator = new Evaluator(playerList, cardDealing.getCommonCards());
+                    int playerIndex = parseInt(playerList.get(i).getName());
+                    int playerScore = evaluator.doAnalyzeCards(playerList.get(i));
+                    Scores.set(playerIndex, playerScore);
+                }
             }
 
             win = Scores.indexOf(Collections.max(Scores));
-            playerList.get(win).setChips(chipsController.getPot());
+            ArrayList<Integer> winnerList = new ArrayList<>();
 
-            System.out.println("WYGRAL GRACZ");
-            System.out.println(playerList.get(win).getName());
-            System.out.println("ILE WYGRAL?");
-            System.out.println(chipsController.getPot());
+            for (i = 0; i < Scores.size(); i++) {
+                if(Scores.get(i) == Scores.get(win)){
+                    winnerList.add(i);
+                }
+            }
 
-            for(Player player : playerList){
-                if(player.playingGame())
+            for (i = 0; i < winnerList.size(); i++) {
+                if(i != 0){
+                    System.out.println("ORAZ");
+                }
+
+                System.out.println("WYGRAL GRACZ " + winnerList.get(i));
+                playerList.get(i).setChips(Math.round(chipsController.getPot()/winnerList.size()));
+            }
+
+            System.out.println("NA ZWYCIĘZCĘ PRZYPADA " + Math.round(chipsController.getPot()/winnerList.size()));
+
+            for (Player player : playerList) {
+                if (player.playingGame())
                     player.setPlayingRound(true);
             }
+
             resetRoundCount();
             chipsController.finishRound();
         }
