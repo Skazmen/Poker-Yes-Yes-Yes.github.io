@@ -98,13 +98,12 @@ export class GameComponent implements OnInit {
     this._time += 1;
   }
 
-  layDeck(): void {
+  layDeck(card): void {
     let i = 0;
     let newContent = '';
-    for(i = 0; i < 9; i++){
-      newContent += '<div class=\'elementContainer\' id=\'elementContainer\'' + i + '\'><div class=\'label\' id=\'label\'' + i + '\'> Lollol' + i + '</div></div>';
+    for (i = 0; i < 9; i++){
+      newContent += '<div class=\'elementContainer\' id=\'elementContainer\'' + i + '\'><img src="../../../assets/images/cards/2C.png"></div>';
     }
-    console.log(newContent);
-    document.getElementById('container').innerHTML = newContent;
+    document.getElementById('deck').innerHTML = newContent;
   }
 }
