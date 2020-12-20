@@ -28,7 +28,7 @@ public class CardDealing {
                 player.setHand(new Hand(deck.get(index), deck.get(index+1)));
                 index += 2;
 
-                str.append(player.getName() + ":" + player.getHand().getCard1().getSuit() + player.getHand().getCard1().getValue() + "," + player.getHand().getCard2().getSuit() + player.getHand().getCard2().getValue() + ";");
+                str.append("Gracz " + player.getName() + " : " + player.getHand().getCard1().getSuit() + player.getHand().getCard1().getValue() + ", " + player.getHand().getCard2().getSuit() + player.getHand().getCard2().getValue() + ";     ");
             }
         }
 
@@ -47,8 +47,8 @@ public class CardDealing {
         return str ;
     }
 
-    public StringBuilder dealRiver() {
-        StringBuilder str = new StringBuilder("river:");
+    public StringBuilder dealTurn() {
+        StringBuilder str = new StringBuilder("turn:");
 
         for(int i = 0; i < 4; i++) {
             str.append(commonCards.get(i).getSuit() + commonCards.get(i).getValue() + ",");
@@ -57,13 +57,17 @@ public class CardDealing {
         return str;
     }
 
-    public StringBuilder dealTurn() {
-        StringBuilder str = new StringBuilder("turn:");
+    public StringBuilder dealRiver() {
+        StringBuilder str = new StringBuilder("river:");
 
         for(int i = 0; i < commonCards.size(); i++) {
             str.append(commonCards.get(i).getSuit() + commonCards.get(i).getValue() + ",");
         }
 
         return str;
+    }
+
+    public CommonCards getCommonCards(){
+        return this.commonCards;
     }
 }
