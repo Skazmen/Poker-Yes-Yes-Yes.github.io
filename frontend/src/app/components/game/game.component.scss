@@ -1,0 +1,50 @@
+app-start {
+    border: 1px gray solid;
+    height: 200px;
+}
+
+.btn-group button {
+  background-color: #BC5CC1; /* Green background */
+  border: 1px solid black; /* Green border */
+  color: white; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 10%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+}
+
+.btn-group button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+.btn-group button:hover {
+  background-color: #A247A7;
+}
+
+div.players {
+  position: fixed;
+  bottom: 550px;
+  right: 460px;
+  width: 500px;
+  border: 3px solid #ffeff6;
+  background-color: #A247A7;
+}
+
+div.info {
+  position: fixed;
+  bottom: 80px;
+  right: 460px;
+  width: 500px;
+  height: 100px;
+  border: 3px solid #ffeff6;
+}
+
+div.cards {
+  position: fixed;
+  bottom: 80px;
+  right: 40px;
+  width: 150px;
+  height: 150px;
+  border: 3px solid #ffeff6;
+}

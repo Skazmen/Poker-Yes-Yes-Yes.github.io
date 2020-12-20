@@ -8,6 +8,7 @@ import {RankingComponent} from './components/ranking/ranking.component';
 import {OptionsComponent} from './components/options/options.component';
 import {GameSearchComponent} from './components/game_search/game_search.component';
 import {MasterLobbyComponent} from './components/master_lobby/master_lobby.component';
+import {GameComponent} from './components/game/game.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'options', component: OptionsComponent},
   {path: 'search', component: GameSearchComponent},
   {path: 'mLobby', component: MasterLobbyComponent},
+  {path: 'game', component: GameComponent},
   {path: '', component: StartMenuComponent},
 ];
 

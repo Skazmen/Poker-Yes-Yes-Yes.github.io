@@ -15,6 +15,7 @@ import {RankingComponent} from './components/ranking/ranking.component';
 import {OptionsComponent} from './components/options/options.component';
 import {GameSearchComponent} from './components/game_search/game_search.component';
 import {MasterLobbyComponent} from './components/master_lobby/master_lobby.component';
+import {GameComponent} from './components/game/game.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {MasterLobbyComponent} from './components/master_lobby/master_lobby.compo
     OptionsComponent,
     GameSearchComponent,
     MasterLobbyComponent,
+    GameComponent,
   ],
   imports: [
     BrowserModule,

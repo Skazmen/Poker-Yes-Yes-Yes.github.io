@@ -1,0 +1,26 @@
+<h1>Twoje Fundusze: {{ cash }}</h1>
+
+<main>
+  <div class = "btn-group">
+    <h2>Czas: {{time}}s</h2>
+    <p>Bet value: <label><input type="number" name="betValue" value="0"></label></p>
+    <p>Raise value: <label><input type="number" name="betValue" value="0"></label></p>
+    <button value="Bet" name="bet" (click)="betPoker()" >Bet</button>
+    <button value="Check" name="check" (click)="checkPoker()" >Check</button>
+    <button value="Fold" name="fold" (click)="foldPoker()" >Fold</button>
+    <button value="Call" name="call" (click)="checkPoker()" >Call</button>
+    <button value="Raise" name="raise" (click)="raisePoker()" >Raise</button>
+  </div>
+
+  <div class = "players">
+    BOOM
+  </div>
+
+  <div class = "cards">
+    CARDS
+  </div>
+
+  <div class = "info">
+    INFO
+  </div>
+</main>

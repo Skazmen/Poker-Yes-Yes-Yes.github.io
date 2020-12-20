@@ -81,6 +81,10 @@ export class MasterLobbyComponent implements OnInit{
     this.router.navigate([`mainMenu`]);
   }
 
+  goGame(): void {
+    this.router.navigate([`game`]);
+  }
+
   searchGame(): void {
   }
 
