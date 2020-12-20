@@ -9,6 +9,23 @@ import {Router} from '@angular/router';
 })
 
 export class GameComponent implements OnInit {
+  title = 'app';
+  private _user = 'User';
+  private _time: any;
+  private _cash: any;
+  private _pot: any;
+  private _players: any;
+  private _hand: any;
+  private _tableCards: any;
+
+
+  get pot(): any {
+    return this._pot;
+  }
+
+  set pot(value: any) {
+    this._pot = value;
+  }
   get time(): any {
     return this._time;
   }
@@ -24,10 +41,6 @@ export class GameComponent implements OnInit {
   set cash(value: any) {
     this._cash = value;
   }
-  title = 'app';
-  private _user = 'User';
-  private _time: any;
-  private _cash: any;
 
   get user(): string {
     return this._user;
@@ -42,6 +55,7 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {
     this._time = 15;
     this.cash = 10000;
+    this.pot = 0;
   }
 
   goHome(): void {
@@ -82,5 +96,15 @@ export class GameComponent implements OnInit {
 
   raisePoker(): void {
     this._time += 1;
+  }
+
+  layDeck(): void {
+    let i = 0;
+    let newContent = '';
+    for(i = 0; i < 9; i++){
+      newContent += '<div class=\'elementContainer\' id=\'elementContainer\'' + i + '\'><div class=\'label\' id=\'label\'' + i + '\'> Lollol' + i + '</div></div>';
+    }
+    console.log(newContent);
+    document.getElementById('container').innerHTML = newContent;
   }
 }

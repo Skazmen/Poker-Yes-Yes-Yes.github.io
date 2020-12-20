@@ -1,8 +1,9 @@
 <h1>Twoje Fundusze: {{ cash }}</h1>
+<h3>Pot: {{ _pot }}</h3>
 
 <main>
   <div class = "btn-group">
-    <h2>Czas: {{time}}s</h2>
+    <h3>Czas: {{time}}s</h3>
     <p>Bet value: <label><input type="number" name="betValue" value="0"></label></p>
     <p>Raise value: <label><input type="number" name="betValue" value="0"></label></p>
     <button value="Bet" name="bet" (click)="betPoker()" >Bet</button>
@@ -20,7 +21,6 @@
     CARDS
   </div>
 
-  <div class = "info">
-    INFO
+  <div class = "info" id = 'info'>
   </div>
 </main>
