@@ -30,7 +30,6 @@ div.players {
   height: 300px;
   border: 3px solid #ffeff6;
   background-color: #faafff;
-  display:inline-block;
 }
 
 div.deck {
@@ -58,5 +57,5 @@ div.playerCards {
 }
 
 div.player {
-
+  display:inline-block;
 }
