@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 })
 
 export class GameComponent implements OnInit {
+
   title = 'app';
   private _user = 'User';
   private _time: any;
@@ -17,7 +18,16 @@ export class GameComponent implements OnInit {
   private _players: any;
   private _hand: any;
   private _tableCards: any;
+  private _activePlayer: any;
 
+
+  get activePlayer(): any {
+    return this._activePlayer;
+  }
+
+  set activePlayer(value: any) {
+    this._activePlayer = value;
+  }
 
   get pot(): any {
     return this._pot;
@@ -56,6 +66,7 @@ export class GameComponent implements OnInit {
     this._time = 15;
     this.cash = 10000;
     this.pot = 0;
+    this.activePlayer = "Player0";
   }
 
   goHome(): void {

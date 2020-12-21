@@ -52,7 +52,7 @@ div.cards {
 }
 
 div.playerCards {
- position: relative;
+  position: relative;
   right: -36px;
   top: -25px;
 }
@@ -60,4 +60,10 @@ div.playerCards {
 div.player {
   display:inline-block;
   margin-top:-50px;
+}
+
+div.playerTurn {
+  position: absolute;
+  right: 100px;
+  top: 100px;
 }
