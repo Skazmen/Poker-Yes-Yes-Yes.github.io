@@ -25,6 +25,7 @@
     "@nebular/theme": "^6.2.1",
     "eva-icons": "^1.1.3",
     "rxjs": "~6.6.0",
+    "socket.io-client": "^3.0.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
