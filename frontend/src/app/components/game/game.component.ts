@@ -99,11 +99,14 @@ export class GameComponent implements OnInit {
   }
 
   layDeck(card): void {
-    let i = 0;
     let newContent = '';
-    for (i = 0; i < 9; i++){
-      newContent += '<div class=\'elementContainer\' id=\'elementContainer\'' + i + '\'><img src="../../../assets/images/cards/2C.png"></div>';
-    }
+
+    newContent += '<div class=\'elementContainer\' id=\'elementContainer\'><img src="../../../assets/images/cards/2C.png"></div>';
+
     document.getElementById('deck').innerHTML = newContent;
+  }
+
+  exitGame(): void {
+    this.router.navigate([`mainMenu`]);
   }
 }

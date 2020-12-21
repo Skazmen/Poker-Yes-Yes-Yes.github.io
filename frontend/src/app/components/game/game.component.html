@@ -1,5 +1,5 @@
 <h1>Twoje Fundusze: {{ cash }}</h1>
-<h3>Pot: {{ _pot }}</h3>
+<h3>Pot: {{ pot }}</h3>
 
 <main>
   <div class = "btn-group">
@@ -14,13 +14,34 @@
   </div>
 
   <div class = "players">
-    BOOM
+    <div class = "player">
+      <img src="../../../assets/images/avatars/1.png" alt="card" width="127">
+      <div class = playerCards>
+        <img src="../../../assets/images/cards/reversy/blue_back.png" alt="card" width="27">
+        <img src="../../../assets/images/cards/reversy/blue_back.png" alt="card" width="27">
+      </div>
+    </div>
+
+    <div class = "player">
+      <img src="../../../assets/images/avatars/1.png" alt="card" width="127">
+      <div class = playerCards>
+        <img src="../../../assets/images/cards/reversy/blue_back.png" alt="card" width="27">
+        <img src="../../../assets/images/cards/reversy/blue_back.png" alt="card" width="27">
+      </div>
+    </div>
   </div>
 
   <div class = "cards">
-    CARDS
+    <img src="../../../assets/images/cards/AH.png" alt="card" width="127">
+    <img src="../../../assets/images/cards/10D.png" alt="card" width="127">
   </div>
 
-  <div class = "deck" id = 'deck' (load)="layDeck(5)">
+  <div class = "deck" id = 'deck'>
+    <img src="../../../assets/images/cards/4C.png" alt="card" width="127">
+    <img src="../../../assets/images/cards/4C.png" alt="card" width="127">
+    <img src="../../../assets/images/cards/4C.png" alt="card" width="127">
+    <img src="../../../assets/images/cards/4C.png" alt="card" width="127">
   </div>
+
+  <button value = "exit" name = "exit" (click)="exitGame()">Wyjdź</button>
 </main>

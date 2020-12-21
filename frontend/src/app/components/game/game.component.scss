@@ -24,18 +24,20 @@ app-start {
 
 div.players {
   position: fixed;
-  bottom: 550px;
+  bottom: 300px;
   right: 460px;
-  width: 500px;
+  width: 514px;
+  height: 300px;
   border: 3px solid #ffeff6;
-  background-color: #A247A7;
+  background-color: #faafff;
+  display:inline-block;
 }
 
-div.info {
+div.deck {
   position: fixed;
   bottom: 80px;
   right: 460px;
-  width: 500px;
+  width: 514px;
   height: 200px;
   border: 3px solid #ffeff6;
 }
@@ -44,7 +46,17 @@ div.cards {
   position: fixed;
   bottom: 80px;
   right: 40px;
-  width: 150px;
+  width: 260px;
   height: 200px;
   border: 3px solid #ffeff6;
+}
+
+div.playerCards {
+ position: relative;
+  right: -36px;
+  top: -25px;
+}
+
+div.player {
+
 }
