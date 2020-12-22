@@ -1,5 +1,6 @@
 package Client.Controllers;
 
+import Client.Game.Round;
 import Client.Players.Player;
 
 import java.util.ArrayList;
@@ -21,12 +22,13 @@ public class ChipsController {
 
     public void startRound(int roundCount) {
         if(roundCount == 1) {
+
             for (Player player : players) {
                 if (player.isBigBlind()) {
-                    player.setChips(player.getChips() - bigBlind);
+                    //player.setChips(player.getChips() - bigBlind);
                     doBet(bigBlind, player);
                 } else if (player.isSmallBlind()) {
-                    player.setChips(player.getChips() - smallBlind);
+                    //player.setChips(player.getChips() - smallBlind);
                     doBet(smallBlind, player);
                 }
             }
@@ -55,17 +57,47 @@ public class ChipsController {
 
     public void doCall(Player player) {
         int max = findMaxBet(players);
-        player.setChips(-(max - player.getBet()));
-        increasePot(max - player.getBet());
-        player.setBet(max);
+        int chips = player.getChips() + player.getBet();
+        if(chips >= max){
+            player.setChips(-(max - player.getBet()));
+            increasePot(max - player.getBet());
+            player.setBet(max);
+        }
+        else{
+            player.setBet(player.getBet() + player.getChips());
+            increasePot(player.getChips());
+            player.setChips(-(player.getChips()));
+        }
     }
 
     public void doBet(int bet, Player player) {
-        player.setChips(-bet);
-        player.setBet(player.getBet() + bet);
-        increaseRaise(bet);
-        setCall(bet);
-        increasePot(bet);
+
+        int max = findMaxBet(players);
+        if(bet > player.getChips())
+            bet = player.getChips() + max;
+        if(max == 0){
+            player.setChips(-bet);
+            player.setBet(player.getBet() + bet);
+            increaseRaise(bet);
+            setCall(bet);
+            increasePot(bet);
+        }
+        else {
+            if(bet == max){
+                player.setChips(-bet);
+                player.setBet(player.getBet() + bet);
+                increaseRaise(bet);
+                setCall(bet);
+                increasePot(bet);
+            }
+            else if(bet < max){
+                doFold(player);
+            }
+            else {
+                doRaise(bet + player.getBet() - max, player);
+            }
+
+        }
     }
 
     public void doRaise(int raise, Player player) {
@@ -75,6 +107,20 @@ public class ChipsController {
         setCall(raise);
         increasePot(max + raise - player.getBet());
         player.setBet(max + raise);
+    }
+
+    public void doCheck(Player player) {
+        int max = findMaxBet(players);
+    }
+
+    public void doFold(Player player) {
+        int max = findMaxBet(players);
+        if(max == 0){
+            doCheck(player);
+        }
+        else{
+            player.setPlayingRound(false);
+        }
     }
 
     public int findMaxBet(ArrayList<Player> players) {

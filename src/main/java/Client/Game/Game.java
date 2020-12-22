@@ -48,6 +48,9 @@ public class Game {
             Seats.add(s);
             current_player++;
         }
+        for (Player player : playerList) {
+            player.initializeChips(chips);
+        }
 
         Socket server = new Socket("localhost", 6967);
         PrintStream out = new PrintStream(server.getOutputStream());

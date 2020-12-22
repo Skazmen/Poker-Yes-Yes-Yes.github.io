@@ -26,6 +26,10 @@ public class Player {
         this.chips += chips;
     }
 
+    public void initializeChips(int chips) {
+        this.chips = chips;
+    }
+
     public int getChips() {
         return chips;
     }

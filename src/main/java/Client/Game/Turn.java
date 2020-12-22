@@ -39,9 +39,10 @@ public class Turn {
                 break;
             case "fold":
                 //fold ---->   Round.fold(currentPlayer);
-                Round.fold(currentPlayer);
+                chipsController.doFold(currentPlayer);
                 break;
             case "check":
+                chipsController.doCheck(currentPlayer);
                 //check  -----> NIC a jak sie nie da nic to chipsController.doBet(0,currentPlayer);
                 break;
             default:

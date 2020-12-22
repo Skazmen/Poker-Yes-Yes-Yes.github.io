@@ -130,6 +130,12 @@ public class Round {
             }
             System.out.println("===========");
             for (Player player : players) {
+                if(player.playingRound() && player.playingGame())
+                    System.out.println("Player's " + player.getName() + " chips: " + player.getChips());
+            }
+            System.out.println("===========");
+
+            for (Player player : players) {
                 if(player.isBigBlind())
                     if(player.turnsInRound > 0)
                         bigBlindTurn = true;
